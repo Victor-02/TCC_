@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ResponsePageable } from 'app/Paginacao';
+import { ResponsePageable } from 'app/shared/Paginacao';
 import { Observable } from 'rxjs';
 
 import { Paciente } from '../model/paciente';

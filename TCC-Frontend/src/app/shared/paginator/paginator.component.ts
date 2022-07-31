@@ -4,7 +4,6 @@ import { Paginator } from './paginator.class';
 @Component({
     selector: 'app-paginator',
     templateUrl: './paginator.component.html',
-    styleUrls: ['./paginator.component.css'],
 })
 export class PaginatorComponent implements OnInit {
     @Input() options: Paginator = new Paginator();
