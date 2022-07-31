@@ -1,1 +1,31 @@
-<p>agendamento works!</p>
+<mat-toolbar>Agendamentos</mat-toolbar>
+
+<div *ngIf="loading" class="spinner py-5 d-flex justify-content-start">
+    <div class="spinner-border" style="width: 15rem; height: 15rem" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+<div *ngIf="!loading && !paginator.records">Nenhum registro carregado!</div>
+
+<div class="table-container" [hidden]="loading || !paginator.records">
+    <table mat-table [dataSource]="paginator.records">
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let agendamento">{{ agendamento.id }}</td>
+        </ng-container>
+        <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef>Nome</th>
+            <td mat-cell *matCellDef="let agendamento">{{ agendamento.nome }}</td>
+        </ng-container>
+        <ng-container matColumnDef="data">
+            <th mat-header-cell *matHeaderCellDef>Data</th>
+            <td mat-cell *matCellDef="let agendamento">{{ agendamento.data }}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+        <tr mat-row *matRowDef="let row; columns: colunas"></tr>
+    </table>
+</div>
+<app-paginator [options]="paginator" (onGetData)="listarAgenda()"> </app-paginator>
+<div class="acoes">
+    <button class="btn btn-primary m-2" routerLink="/agendamentos">Voltar</button>
+</div>
