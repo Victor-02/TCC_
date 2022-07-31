@@ -23,7 +23,7 @@ export class AgendamentoComponent implements OnInit {
     }
 
     listarAgenda() {
-        this.service.listarPages(this.paginator.page, this.paginator.size).subscribe({
+        this.service.listarAgenda(this.paginator.page, this.paginator.size).subscribe({
             next: (data: any) => {
                 this.paginator.records = data.content;
                 this.paginator.total = data.totalElements;

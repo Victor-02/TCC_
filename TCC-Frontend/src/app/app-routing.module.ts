@@ -4,6 +4,8 @@ import { HomeComponent } from './view/home/home.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
+    { path: 'login', component: HomeComponent },
+    { path: 'agendamentos', component: HomeComponent },
 
     {
         path: 'pacientes',

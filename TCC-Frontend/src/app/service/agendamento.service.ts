@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
 })
 export class AgendamentoService {
     private readonly baseURL = 'http://localhost:8080/api';
-    private readonly endPoint = 'importacao';
+    private readonly endPoint = 'agendamentos';
     constructor(private http: HttpClient) {}
 
-    listarPages(page = 0, size = 10): Observable<ResponsePageable> {
+    listarAgenda(page = 0, size = 10): Observable<ResponsePageable> {
         const httpHeader = new HttpHeaders();
         let pageable = new HttpParams();
         pageable = pageable.append('page', page);
