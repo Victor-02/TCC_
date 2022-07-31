@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+.acoes button,
+.acoes a {
+    margin: 8px 8px 8px 8px;
+}
+
+.form-padrao {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-padrao > * {
+    width: 100%;
+}
+
+.container {
+    padding: 15px;
+}

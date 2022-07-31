@@ -1,0 +1,48 @@
+<mat-toolbar>{{ this.paciente && this.paciente.id ? 'Editar Paciente' : 'Cadastrar Paciente' }}</mat-toolbar>
+
+<div class="container">
+    <form class="form-padrao" *ngIf="fGroup" [formGroup]="fGroup" (ngSubmit)="fGroup.valid && salvar()" noValidate>
+        <mat-form-field>
+            <input matInput placeholder="Nome" formControlName="nome" required />
+            <mat-error>Digite um nome válido!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email" required />
+            <mat-error>Digite um email válido!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="CPF" formControlName="cpf" required />
+            <mat-error>Digite um cpf válido!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Telefone" formControlName="telefone" required />
+            <mat-error>Digite um telefone válido!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Data de Nascimento" formControlName="dataNascimento" />
+            <mat-error>Digite uma data válida!</mat-error>
+        </mat-form-field>
+        <div class="acoes">
+            <button mat-raised-button color="primary" [disabled]="!fGroup.valid">Salvar</button>
+            <button
+                *ngIf="paciente && paciente.id"
+                class="btn-danger"
+                mat-raised-button
+                type="button"
+                (click)="deletar()">
+                Deletar
+            </button>
+            <button type="button" class="btn-warning" mat-raised-button routerLink="/pacientes">Cancelar</button>
+        </div>
+        <script>
+            Swal.fire({
+                title: 'ATENÇÃO!!',
+                text: 'Deseja realmente excluir o Veiculo com a placa: ' + veiculo.placaOriginal + '?',
+                showDenyButton: true,
+                denyButtonText: 'Não',
+                confirmButtonText: 'Sim, excluir',
+                icon: 'warning',
+            });
+        </script>
+    </form>
+</div>
