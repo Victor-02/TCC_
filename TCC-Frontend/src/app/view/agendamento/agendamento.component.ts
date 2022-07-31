@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Agendamento } from 'app/model/agendamento';
 import { Paginator } from 'app/shared/paginator/paginator.class';
 
 @Component({
