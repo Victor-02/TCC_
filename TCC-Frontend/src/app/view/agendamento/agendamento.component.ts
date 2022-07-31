@@ -14,7 +14,7 @@ export class AgendamentoComponent implements OnInit {
     importacoes: Agendamento[] = [];
     paginator: Paginator = new Paginator();
     loading = false;
-    colunas = ['id', 'nome', 'data'];
+    colunas = ['id', 'paciente', 'servico', 'data'];
     constructor(private service: AgendamentoService, private snackBar: MatSnackBar) {}
 
     ngOnInit(): void {

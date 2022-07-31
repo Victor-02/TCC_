@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AgendamentoComponent } from './view/agendamento/agendamento.component';
 import { HomeComponent } from './view/home/home.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'login', component: HomeComponent },
-    { path: 'agendamentos', component: HomeComponent },
+    { path: 'agendamentos', component: AgendamentoComponent },
 
     {
         path: 'pacientes',
