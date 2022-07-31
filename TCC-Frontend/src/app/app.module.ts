@@ -7,12 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './view/home/home.component';
 import { MatImportsModule } from './shared/mat-imports/mat-imports.module';
-import { PaginatorComponent } from './shared/paginator/paginator.component';
 import { AgendamentoComponent } from './view/agendamento/agendamento.component';
-import { ImportacaoComponent } from './view/importacao/importacao.component';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, AgendamentoComponent, ImportacaoComponent],
+    declarations: [AppComponent, HomeComponent, AgendamentoComponent],
     imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatImportsModule, HttpClientModule],
     providers: [],
     bootstrap: [AppComponent],
