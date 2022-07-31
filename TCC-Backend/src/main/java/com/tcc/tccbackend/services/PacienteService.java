@@ -4,8 +4,12 @@ import com.tcc.tccbackend.dtos.PacienteDTO;
 import com.tcc.tccbackend.models.Paciente;
 import com.tcc.tccbackend.repository.PacienteRepository;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.DateFormatConverter;
+import org.apache.poi.xssf.usermodel.XSSFDataFormat;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.modelmapper.ModelMapper;
@@ -20,8 +24,10 @@ import javax.persistence.EntityNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class PacienteService {
@@ -99,13 +105,23 @@ public class PacienteService {
 
     public List<Paciente> converteArquivo(MultipartFile file) throws IOException {
 
+        
+
         List<Paciente> pacientes = new ArrayList<>();
 
         InputStream fis = file.getInputStream();
-        XSSFWorkbook workbook = new XSSFWorkbook(fis);
-        final XSSFSheet sheet = workbook.getSheetAt(0);
+        XSSFWorkbook workBook = new XSSFWorkbook(fis);
+        final XSSFSheet sheet = workBook.getSheetAt(0);
 
         Iterator<Row> rowIterator = sheet.iterator();
+        
+        String excelFormatPattern = DateFormatConverter.convert(Locale.US, "dd/MM/yyyy");
+
+        CellStyle cellStyle = workBook.createCellStyle();
+
+        DataFormat poiFormat = workBook.createDataFormat();
+        cellStyle.setDataFormat(poiFormat.getFormat(excelFormatPattern));
+        
 
         while (rowIterator.hasNext()) {
             Row row = rowIterator.next();
@@ -130,11 +146,14 @@ public class PacienteService {
                     case 3:
                         paciente.setTelefone(cell.getStringCellValue());
                         break;
+                    case 4:
+                        paciente.setDataNascimento(cell.getDateCellValue());
+                        break;
                 }
             }
 
         }
-        workbook.close();
+        workBook.close();
         fis.close();
         return pacientes;
     }

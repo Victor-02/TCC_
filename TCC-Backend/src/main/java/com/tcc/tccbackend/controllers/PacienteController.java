@@ -1,5 +1,6 @@
 package com.tcc.tccbackend.controllers;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tcc.tccbackend.dtos.PacienteDTO;
 import com.tcc.tccbackend.models.Paciente;
 import com.tcc.tccbackend.services.PacienteService;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pacientes")
+@JsonFormat(pattern="dd/MM/yyyy")
 public class PacienteController {
 
     final PacienteService service;

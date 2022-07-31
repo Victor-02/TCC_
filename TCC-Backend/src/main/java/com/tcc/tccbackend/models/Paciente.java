@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @Entity
@@ -35,6 +36,9 @@ public class Paciente implements Serializable {
     @Column
     @NotBlank
     private String telefone;
+
+    @Column
+    private Date dataNascimento;
 
     @OneToOne(mappedBy="paciente")
     private Agendamento agendamento;

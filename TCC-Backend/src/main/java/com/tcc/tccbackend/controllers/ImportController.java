@@ -59,7 +59,6 @@ public class ImportController {
     @GetMapping
     public ResponseEntity<?> getAll(Pageable page) {
         Page<Import> imports = importService.getAll(page);
-        System.out.println(page);
         return ResponseEntity.ok().body(imports);
 
     }
