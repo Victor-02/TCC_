@@ -7,17 +7,18 @@
 </div>
 <div *ngIf="!loading && !paginator.records">Nenhum registro carregado!</div>
 
-<mat-form-field appearance="fill">
-    <mat-label>Filtrar por Data</mat-label>
-    <mat-date-range-input [rangePicker]="picker">
-        <input matStartDate placeholder="Start date" />
-        <input matEndDate placeholder="End date" />
-    </mat-date-range-input>
-    <mat-hint>DD/MM/AAAA – DD/MM/AAAA</mat-hint>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-date-range-picker #picker></mat-date-range-picker>
-</mat-form-field>
-
+<form [formGroup]="dateForm">
+    <mat-form-field appearance="fill">
+        <mat-label>Filtrar por Data</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate placeholder="Data Inicial" />
+            <input matEndDate placeholder="Data Final" />
+        </mat-date-range-input>
+        <mat-hint>DD/MM/AAAA – DD/MM/AAAA</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+</form>
 <div class="table-container" [hidden]="loading || !paginator.records">
     <table mat-table [dataSource]="paginator.records">
         <ng-container matColumnDef="id">
@@ -43,4 +44,5 @@
 <!-- <app-paginator [options]="paginator" (onGetData)="listarAgenda()"> </app-paginator> -->
 <div class="acoes">
     <button class="btn btn-primary m-2" routerLink="/agendamentos">Voltar</button>
+    <button class="btn btn-secondary m-2" routerLink="/agendamentos">Agendar Consulta</button>
 </div>
