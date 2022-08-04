@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './view/home/home.component';
 import { MatImportsModule } from './shared/mat-imports/mat-imports.module';
 import { AgendamentoComponent } from './view/agendamento/agendamento.component';
+import { AgendamentoCadastrarComponent } from './view/agendamento/agendamento-cadastrar/agendamento-cadastrar.component';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, AgendamentoComponent],
+    declarations: [AppComponent, HomeComponent, AgendamentoComponent, AgendamentoCadastrarComponent],
     imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatImportsModule, HttpClientModule],
     providers: [],
     bootstrap: [AppComponent],
