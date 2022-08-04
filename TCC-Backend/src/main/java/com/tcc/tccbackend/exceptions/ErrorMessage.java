@@ -9,7 +9,7 @@ public class ErrorMessage implements Serializable{
 	private Integer Status;
 	private String mensagem;
 
-	public MensagemErro() {
+	public ErrorMessage() {
 	}
 
 	public Instant getDataAtual() {
