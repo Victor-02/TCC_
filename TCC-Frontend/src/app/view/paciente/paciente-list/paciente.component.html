@@ -4,7 +4,7 @@
     <div class="acoes mb-2 ms-3">
         <form [formGroup]="searchForm" (ngSubmit)="(searchForm.valid)" class="pesquisa">
             <mat-form-field>
-                <input matInput placeholder="CPF" formControlName="search" autocomplete="off" />
+                <input matInput placeholder="Pesquisar por CPF" formControlName="search" autocomplete="off" />
             </mat-form-field>
             <button mat-raised-button class="btn-primary" (click)="search(searchForm.value.search)">Pesquisar</button>
             <button mat-raised-button class="btn-secondary" (click)="resetaPesquisa()">Limpar</button>
