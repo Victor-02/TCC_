@@ -5,6 +5,8 @@ import com.tcc.tccbackend.models.Paciente;
 import com.tcc.tccbackend.services.ImportService;
 import com.tcc.tccbackend.services.PacienteService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -27,9 +29,8 @@ import java.util.UUID;
 @Slf4j
 public class ImportController {
 
-
+    private final Logger logger = LoggerFactory.getLogger(ImportController.class);
     final PacienteService pacienteService;
-
     final ImportService importService;
 
     public ImportController(PacienteService pacienteService, ImportService importService) {
@@ -50,7 +51,7 @@ public class ImportController {
             importService.saveImport(importacao);
             return new ResponseEntity<>("{\"Arquivo carregado com sucesso!\"}", HttpStatus.OK);
         } catch (Exception e) {
-            log.error(e.getMessage());
+            logger.error("Erro: ", e);
             return new ResponseEntity<>("{\"Erro ao carregar o arquivo!\"}",
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -1,5 +1,7 @@
 package com.tcc.tccbackend.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tcc.tccbackend.dtos.PacienteDTO;
 import com.tcc.tccbackend.models.Paciente;
@@ -19,6 +21,7 @@ import java.util.List;
 @JsonFormat(pattern="dd/MM/yyyy")
 public class PacienteController {
 
+    private final Logger logger = LoggerFactory.getLogger(ImportController.class);
     final PacienteService service;
     final ModelMapper mapper;
 
@@ -30,6 +33,7 @@ public class PacienteController {
     @PostMapping
     public ResponseEntity<?> Insert(@Valid @RequestBody Paciente paciente) {
         paciente = service.save(paciente);
+        logger.info("Efetuando insercao de paciente");
         return ResponseEntity.status(HttpStatus.CREATED).body(paciente);
     }
 
@@ -37,6 +41,7 @@ public class PacienteController {
     public ResponseEntity<?> getByID(@PathVariable Integer id) {
         Paciente paciente = service.findById(id);
         PacienteDTO pacienteDTO = this.toPacienteDTO(paciente);
+        logger.info("Efetuando busca por ID do veiculo: %d", paciente.getId()));
         return ResponseEntity.ok().body(pacienteDTO); 
     }
 
@@ -48,6 +53,7 @@ public class PacienteController {
 
     @GetMapping("/search")
     public ResponseEntity<List<Paciente>> search(@RequestParam("key") String query){
+        logger.info("Efetuando busca por CPF do veiculo: %d", query));
         return ResponseEntity.ok(service.searchPacientes(query));
     }
 

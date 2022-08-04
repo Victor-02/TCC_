@@ -23,6 +23,7 @@ public class AgendamentoController {
     @PostMapping
     public ResponseEntity<?> Insert(@Valid @RequestBody Agendamento agendamento) {
         agendamento = service.save(agendamento);
+        logger.info("Efetuando insercão de Agendamento");
         return ResponseEntity.status(HttpStatus.CREATED).body(agendamento);
     }
 
