@@ -2,6 +2,9 @@ package com.tcc.tccbackend.controllers;
 
 import com.tcc.tccbackend.models.Agendamento;
 import com.tcc.tccbackend.services.AgendamentoService;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -15,6 +18,7 @@ import javax.validation.Valid;
 public class AgendamentoController {
 
     final AgendamentoService service;
+    private final Logger logger = LoggerFactory.getLogger(ImportController.class);
 
     public AgendamentoController(AgendamentoService service) {
         this.service = service;

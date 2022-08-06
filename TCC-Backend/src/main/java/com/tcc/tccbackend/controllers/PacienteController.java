@@ -41,7 +41,7 @@ public class PacienteController {
     public ResponseEntity<?> getByID(@PathVariable Integer id) {
         Paciente paciente = service.findById(id);
         PacienteDTO pacienteDTO = this.toPacienteDTO(paciente);
-        logger.info("Efetuando busca por ID do veiculo: %d", paciente.getId()));
+        logger.info("Efetuando busca por ID do veiculo: %d", paciente.getId());
         return ResponseEntity.ok().body(pacienteDTO); 
     }
 
@@ -53,7 +53,7 @@ public class PacienteController {
 
     @GetMapping("/search")
     public ResponseEntity<List<Paciente>> search(@RequestParam("key") String query){
-        logger.info("Efetuando busca por CPF do veiculo: %d", query));
+        logger.info("Efetuando busca por CPF do veiculo: %d", query);
         return ResponseEntity.ok(service.searchPacientes(query));
     }
 

@@ -1,4 +1,4 @@
-package com.tcc.tccbackend.dtos;
+package com.tcc.tccbackend.exceptions;
 
 import java.time.Instant;
 

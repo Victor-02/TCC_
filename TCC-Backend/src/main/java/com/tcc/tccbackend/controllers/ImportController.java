@@ -26,7 +26,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "/api/importacao", produces = {"application/json"})
 @CrossOrigin("*")
-@Slf4j
 public class ImportController {
 
     private final Logger logger = LoggerFactory.getLogger(ImportController.class);

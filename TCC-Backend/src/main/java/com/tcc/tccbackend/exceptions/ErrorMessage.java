@@ -1,6 +1,6 @@
-import java.io.Serializable;
-package com.tcc.tccbackend.dtos;
+package com.tcc.tccbackend.exceptions;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 public class ErrorMessage implements Serializable{
