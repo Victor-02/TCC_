@@ -1,9 +1,9 @@
-import { Agendamento } from 'app/model/agendamento';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { PacienteService } from 'app/service/paciente.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Agendamento } from 'app/model/agendamento';
+import { AgendamentoService } from 'app/service/agendamento.service';
 
 @Component({
     selector: 'app-agendamento-cadastrar',
@@ -16,12 +16,15 @@ export class AgendamentoCadastrarComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private service: PacienteService,
+        private service: AgendamentoService,
         private router: Router,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
+        private activatedRoute: ActivatedRoute
     ) {}
 
     ngOnInit(): void {
+        this.agendamento = this.activatedRoute.snapshot.data['agendamento'];
+
         this.fGroup = this.formBuilder.group({
             paciente: ['', Validators.required],
             data: ['', Validators.required],
@@ -30,16 +33,33 @@ export class AgendamentoCadastrarComponent implements OnInit {
     }
 
     salvar() {
-        this.service.salvar(this.fGroup.value).subscribe({
+        if (this.agendamento && this.agendamento.id) {
+            this.service.atualizar(this.fGroup.value, this.agendamento.id).subscribe({
+                next: () => this.router.navigateByUrl('/agendamentos'),
+                error: () => this.onErrorEdicao(),
+            });
+        } else {
+            this.service.salvar(this.fGroup.value).subscribe({
+                next: () => this.router.navigateByUrl('/agendamentos'),
+                error: () => this.onErrorAgendamento(),
+            });
+        }
+    }
+
+    deletar() {
+        this.service.delete(this.agendamento).subscribe({
             next: () => this.router.navigateByUrl('/agendamentos'),
-            error: () => this.onErrorAgendamento(),
+            error: () => this.onErrorDelete(),
         });
     }
 
     private onErrorAgendamento() {
-        this.snackBar.open('Erro ao salvar veículo!', '', { duration: 3500 });
+        this.snackBar.open('Erro ao salvar agendamento!', '', { duration: 3500 });
     }
     private onErrorDelete() {
-        this.snackBar.open('Erro ao deletar veículo!', '', { duration: 3500 });
+        this.snackBar.open('Erro ao deletar agendamento!', '', { duration: 3500 });
+    }
+    private onErrorEdicao() {
+        this.snackBar.open('Erro ao editar agendamento!', '', { duration: 3500 });
     }
 }
