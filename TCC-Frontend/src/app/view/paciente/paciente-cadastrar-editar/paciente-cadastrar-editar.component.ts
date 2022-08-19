@@ -56,12 +56,12 @@ export class PacienteCadastrarEditarComponent implements OnInit {
     }
 
     private onErrorCadastro() {
-        this.snackBar.open('Erro ao salvar veículo!', '', { duration: 3500 });
+        this.snackBar.open('Erro ao salvar paciente!', '', { duration: 3500 });
     }
     private onErrorEdicao() {
-        this.snackBar.open('Erro ao editar veículo!', '', { duration: 3500 });
+        this.snackBar.open('Erro ao editar paciente!', '', { duration: 3500 });
     }
     private onErrorDelete() {
-        this.snackBar.open('Erro ao deletar veículo!', '', { duration: 3500 });
+        this.snackBar.open('Erro ao deletar paciente!', '', { duration: 3500 });
     }
 }
