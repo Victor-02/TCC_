@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Agendamento } from 'app/model/agendamento';
+import { Paciente } from 'app/model/paciente';
 import { AgendamentoService } from 'app/service/agendamento.service';
 import { PacienteService } from 'app/service/paciente.service';
 
@@ -14,6 +15,7 @@ import { PacienteService } from 'app/service/paciente.service';
 export class AgendamentoCadastrarComponent implements OnInit {
     agendamento!: Agendamento;
     fGroup!: FormGroup;
+    pacientes: Paciente[] = [];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -55,7 +57,11 @@ export class AgendamentoCadastrarComponent implements OnInit {
         });
     }
 
-    buscarPaciente() {}
+    buscarPaciente() {
+        return this.servicePaciente.buscarTodos().subscribe({
+            next: (data) => (this.pacientes = data),
+        });
+    }
 
     private onErrorAgendamento() {
         this.snackBar.open('Erro ao salvar agendamento!', '', { duration: 3500 });

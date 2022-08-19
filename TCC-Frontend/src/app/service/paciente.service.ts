@@ -51,7 +51,7 @@ export class PacienteService {
         return this.httpClient.delete<Paciente>(`${this.baseURL}/${this.endPoint}/${paciente.id}`);
     }
 
-    buscarTodos(): Observable<Paciente> {
-        return this.httpClient.get<Paciente>(`${this.baseURL}/${this.endPoint}/all`);
+    buscarTodos(): Observable<Paciente[]> {
+        return this.httpClient.get<Paciente[]>(`${this.baseURL}/${this.endPoint}/all`);
     }
 }
