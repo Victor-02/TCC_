@@ -4,7 +4,6 @@ import com.tcc.tccbackend.models.Import;
 import com.tcc.tccbackend.models.Paciente;
 import com.tcc.tccbackend.services.ImportService;
 import com.tcc.tccbackend.services.PacienteService;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
