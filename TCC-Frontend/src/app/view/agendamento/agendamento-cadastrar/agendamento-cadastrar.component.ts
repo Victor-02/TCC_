@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Agendamento } from 'app/model/agendamento';
 import { AgendamentoService } from 'app/service/agendamento.service';
+import { PacienteService } from 'app/service/paciente.service';
 
 @Component({
     selector: 'app-agendamento-cadastrar',
@@ -17,6 +18,7 @@ export class AgendamentoCadastrarComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private service: AgendamentoService,
+        private servicePaciente: PacienteService,
         private router: Router,
         private snackBar: MatSnackBar,
         private activatedRoute: ActivatedRoute
@@ -52,6 +54,8 @@ export class AgendamentoCadastrarComponent implements OnInit {
             error: () => this.onErrorDelete(),
         });
     }
+
+    buscarPaciente() {}
 
     private onErrorAgendamento() {
         this.snackBar.open('Erro ao salvar agendamento!', '', { duration: 3500 });
