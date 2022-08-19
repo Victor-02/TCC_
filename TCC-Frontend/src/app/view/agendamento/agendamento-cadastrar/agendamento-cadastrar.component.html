@@ -1,3 +1,42 @@
 <div class="container">
-    <p>agendamento-cadastrar works!</p>
+    <mat-toolbar>{{ this.agendamento && this.agendamento.id ? 'Editar Agendamento' : 'Cadastrar Agendamento' }}</mat-toolbar>
+
+    <div class="container">
+        <form class="form-padrao" *ngIf="fGroup" [formGroup]="fGroup" (ngSubmit)="fGroup.valid && salvar()" noValidate>
+            <mat-form-field>
+                <input matInput placeholder="Nome" formControlName="nome" required />
+                <mat-error>Digite um nome válido!</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Serviço" formControlName="serviço" required />
+                <mat-error>Preencha o campo serviço!</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Data" formControlName="data" required />
+                <mat-error>Preencha o campo data corretamente!</mat-error>
+            </mat-form-field>
+            <div class="acoes">
+                <button mat-raised-button color="primary" [disabled]="!fGroup.valid">Salvar</button>
+                <button
+                    *ngIf="agendamento && agendamento.id"
+                    class="btn-danger"
+                    mat-raised-button
+                    type="button"
+                    (click)="deletar()">
+                    Deletar
+                </button>
+                <button type="button" class="btn-warning" mat-raised-button routerLink="/agendamentos">Cancelar</button>
+            </div>
+            <script>
+                Swal.fire({
+                    title: 'ATENÇÃO!!',
+                    text: 'Deseja realmente excluir o Agendamento com o ID: ' + agendamento.id + '?',
+                    showDenyButton: true,
+                    denyButtonText: 'Não',
+                    confirmButtonText: 'Sim, excluir',
+                    icon: 'warning',
+                });
+            </script>
+        </form>
+    </div>
 </div>
