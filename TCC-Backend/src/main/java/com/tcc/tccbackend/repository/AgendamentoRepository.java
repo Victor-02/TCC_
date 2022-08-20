@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Integer> {
-    List<Agendamento> findByDataBetween(String data);
+    //List<Agendamento> findByDataBetween(String data);
 }
