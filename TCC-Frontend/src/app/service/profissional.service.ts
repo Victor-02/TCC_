@@ -34,4 +34,7 @@ export class ProfissionalService {
     delete(profissional: Profissional): Observable<{}> {
         return this.httpClient.delete<Profissional>(`${this.baseURL}/${this.endPoint}/${profissional.id}`);
     }
+    buscarTodos(): Observable<Profissional[]> {
+        return this.httpClient.get<Profissional[]>(`${this.baseURL}/${this.endPoint}/all`);
+    }
 }

@@ -34,4 +34,7 @@ export class ServicoService {
     delete(servico: Servico): Observable<{}> {
         return this.httpClient.delete<Servico>(`${this.baseURL}/${this.endPoint}/${servico.id}`);
     }
+    buscarTodos(): Observable<Servico[]> {
+        return this.httpClient.get<Servico[]>(`${this.baseURL}/${this.endPoint}/all`);
+    }
 }
