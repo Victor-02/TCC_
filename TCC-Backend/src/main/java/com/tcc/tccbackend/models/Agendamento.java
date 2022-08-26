@@ -28,4 +28,8 @@ public class Agendamento implements Serializable {
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
+    @ManyToOne
+    @JoinColumn(name = "profissional_id")
+    private Profissional profissional;
+
 }

@@ -3,47 +3,47 @@ package com.tcc.tccbackend.exceptions;
 import java.io.Serializable;
 import java.time.Instant;
 
-public class ErrorMessage implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class ErrorMessage implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-	private Instant dataAtual;
-	private String erro;
-	private Integer Status;
-	private String mensagem;
+    private Instant dataAtual;
+    private String erro;
+    private Integer Status;
+    private String mensagem;
 
-	public ErrorMessage() {
-	}
+    public ErrorMessage() {
+    }
 
-	public Instant getDataAtual() {
-		return dataAtual;
-	}
+    public Instant getDataAtual() {
+        return dataAtual;
+    }
 
-	public void setDataAtual(Instant dataAtual) {
-		this.dataAtual = dataAtual;
-	}
+    public void setDataAtual(Instant dataAtual) {
+        this.dataAtual = dataAtual;
+    }
 
-	public String getErro() {
-		return erro;
-	}
+    public String getErro() {
+        return erro;
+    }
 
-	public void setErro(String erro) {
-		this.erro = erro;
-	}
+    public void setErro(String erro) {
+        this.erro = erro;
+    }
 
-	public Integer getStatus() {
-		return Status;
-	}
+    public Integer getStatus() {
+        return Status;
+    }
 
-	public void setStatus(Integer status) {
-		Status = status;
-	}
+    public void setStatus(Integer status) {
+        Status = status;
+    }
 
-	public String getMensagem() {
-		return mensagem;
-	}
+    public String getMensagem() {
+        return mensagem;
+    }
 
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
-	}
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
 
 }

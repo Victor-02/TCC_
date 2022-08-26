@@ -3,6 +3,7 @@ package com.tcc.tccbackend.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -27,4 +28,8 @@ public class Profissional {
 
     @Column
     private String telefone;
+
+    @Column
+    @OneToMany(mappedBy = "profissional")
+    private List<Agendamento> agendamentos;
 }

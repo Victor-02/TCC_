@@ -20,6 +20,6 @@ public class Servico implements Serializable {
     private String nome;
 
     @OneToMany (mappedBy = "servico")
-    private List<Agendamento> agendamento;
+    private List<Agendamento> agendamentos;
 
 }
