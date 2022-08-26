@@ -19,6 +19,9 @@ public class Servico implements Serializable {
     @Column
     private String nome;
 
+    @Column
+    private Double preco;
+
     @OneToMany (mappedBy = "servico")
     private List<Agendamento> agendamentos;
 
