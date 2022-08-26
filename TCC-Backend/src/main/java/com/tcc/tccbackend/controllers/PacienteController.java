@@ -46,9 +46,14 @@ public class PacienteController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getAll(Pageable page) {
-        Page<PacienteDTO> pacientes = service.getAll(page);
+    public ResponseEntity<?> getAllPage(Pageable page) {
+        Page<PacienteDTO> pacientes = service.getAllPage(page);
         return ResponseEntity.ok().body(pacientes);
+    }
+    @GetMapping("/all")
+    public ResponseEntity<?> getAll() {
+        List<PacienteDTO> profissionais = service.getAll();
+        return ResponseEntity.ok().body(profissionais);
     }
 
     @GetMapping("/search")

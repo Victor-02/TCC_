@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 @RestController
@@ -36,8 +38,14 @@ public class ProfissionalController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getAll(Pageable page) {
-        Page<Profissional> profissionais = service.getAll(page);
+    public ResponseEntity<?> getAllPage(Pageable page) {
+        Page<Profissional> profissionais = service.getAllPage(page);
+        return ResponseEntity.ok().body(profissionais);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAll() {
+        List<Profissional> profissionais = service.getAll();
         return ResponseEntity.ok().body(profissionais);
     }
 

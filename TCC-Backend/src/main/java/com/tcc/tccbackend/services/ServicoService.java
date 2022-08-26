@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import javax.persistence.EntityNotFoundException;
 
 @Service
@@ -31,9 +33,18 @@ public class ServicoService {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Servico não encontrado: " + id));
     }
 
-    public Page<Servico> getAll(Pageable page) {
+    public Page<Servico> getAllPage(Pageable page) {
         try {
             return repository.findAll(page);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Servico> getAll(){
+        try {
+            return repository.findAll();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

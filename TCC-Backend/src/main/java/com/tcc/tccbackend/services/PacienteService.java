@@ -63,12 +63,22 @@ public class PacienteService {
         return repository.findByCpfContaining(query);
     }
 
-    public Page<PacienteDTO> getAll(Pageable page) {
+    public Page<PacienteDTO> getAllPage(Pageable page) {
         try {
             Pageable pageable = PageRequest.of(page.getPageNumber(), page.getPageSize());
             List<PacienteDTO> pacientes = transfer(repository.findAll());
             Page<PacienteDTO> pacientesPage = toPage(pacientes, pageable);
             return pacientesPage;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<PacienteDTO> getAll() {
+        try {
+            return transfer(repository.findAll());
+            
         } catch (Exception e) {
             e.printStackTrace();
             return null;
