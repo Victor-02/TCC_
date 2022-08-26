@@ -43,6 +43,16 @@
     </div>
     <!-- <app-paginator [options]="paginator" (onGetData)="listarAgenda()"> </app-paginator> -->
     <div class="acoes">
-        <button class="btn btn-primary mt-4" routerLink="/agendamentos-cadastro">Agendar Consulta</button>
+        <button class="btn btn-primary mt-4" (click)="openDialog()">Agendar Consulta</button>
     </div>
 </div>
+<script>
+    Swal.fire({
+        title: 'ATENÇÃO!!',
+        text: 'Deseja realmente excluir o Agendamento com o ID: ' + agendamento.id + '?',
+        showDenyButton: true,
+        denyButtonText: 'Não',
+        confirmButtonText: 'Sim, excluir',
+        icon: 'warning',
+    });
+</script>

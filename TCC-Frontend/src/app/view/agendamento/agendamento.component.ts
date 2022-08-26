@@ -1,5 +1,7 @@
+import { AgendamentoDialogComponent } from './agendamento-dialog/agendamento-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Agendamento } from 'app/model/agendamento';
@@ -20,11 +22,15 @@ export class AgendamentoComponent implements OnInit {
         data: new FormControl(''),
     });
     colunas = ['id', 'paciente', 'servico', 'data'];
-    constructor(private service: AgendamentoService, private snackBar: MatSnackBar) {}
+    constructor(private service: AgendamentoService, private snackBar: MatSnackBar, public dialog: MatDialog) {}
 
     ngOnInit(): void {
         this.listarAgenda();
         this.paginator.urlBase = 'http://localhost:8080/api/Agendamento';
+    }
+
+    openDialog(): void {
+        const dialogRef = this.dialog.open(AgendamentoDialogComponent, {});
     }
 
     listarAgenda() {
