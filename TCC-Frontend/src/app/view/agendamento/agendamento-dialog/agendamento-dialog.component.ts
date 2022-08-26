@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TestabilityRegistry } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Agendamento } from 'app/model/agendamento';
 import { Paciente } from 'app/model/paciente';
+import { Profissional } from 'app/model/profissional';
+import { Servico } from 'app/model/servico';
 import { AgendamentoService } from 'app/service/agendamento.service';
 import { PacienteService } from 'app/service/paciente.service';
+import { ProfissionalService } from 'app/service/profissional.service';
+import { ServicoService } from 'app/service/servico.service';
 
 @Component({
     selector: 'app-agendamento-dialog',
@@ -16,11 +20,15 @@ export class AgendamentoDialogComponent implements OnInit {
     agendamento!: Agendamento;
     fGroup!: FormGroup;
     pacientes: Paciente[] = [];
+    servicos: Servico[] = [];
+    profissionais: Profissional[] = [];
 
     constructor(
         private formBuilder: FormBuilder,
         private service: AgendamentoService,
         private servicePaciente: PacienteService,
+        private serviceProfissional: ProfissionalService,
+        private serviceServico: ServicoService,
         private router: Router,
         private snackBar: MatSnackBar,
         private activatedRoute: ActivatedRoute
@@ -37,17 +45,10 @@ export class AgendamentoDialogComponent implements OnInit {
     }
 
     salvar() {
-        if (this.agendamento && this.agendamento.id) {
-            this.service.atualizar(this.fGroup.value, this.agendamento.id).subscribe({
-                next: () => this.router.navigateByUrl('/agendamentos'),
-                error: () => this.onErrorEdicao(),
-            });
-        } else {
-            this.service.salvar(this.fGroup.value).subscribe({
-                next: () => this.router.navigateByUrl('/agendamentos'),
-                error: () => this.onErrorAgendamento(),
-            });
-        }
+        this.service.salvar(this.fGroup.value).subscribe({
+            next: () => this.router.navigateByUrl('/agendamentos'),
+            error: () => this.onErrorAgendamento(),
+        });
     }
 
     deletar() {
@@ -69,7 +70,8 @@ export class AgendamentoDialogComponent implements OnInit {
     private onErrorDelete() {
         this.snackBar.open('Erro ao deletar agendamento!', '', { duration: 3500 });
     }
-    private onErrorEdicao() {
-        this.snackBar.open('Erro ao editar agendamento!', '', { duration: 3500 });
+
+    private preencheDados() {
+        this.servicePaciente;
     }
 }

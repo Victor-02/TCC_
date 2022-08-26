@@ -4,19 +4,40 @@
     <mat-dialog-content>
         <form class="form-padrao" *ngIf="fGroup" [formGroup]="fGroup" (ngSubmit)="fGroup.valid && salvar()" noValidate>
             <mat-form-field>
-                <input matInput placeholder="Nome" formControlName="nome" required />
-                <mat-error>Digite um nome válido!</mat-error>
+                <mat-label>Paciente</mat-label>
+                <mat-select required>
+                    <mat-option *ngFor="let paciente of pacientes" [value]="paciente.id">
+                        {{ paciente.nome }}
+                    </mat-option>
+                </mat-select>
+                <mat-error>Selecione um paciente!</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Serviço" formControlName="serviço" required />
-                <mat-error>Preencha o campo serviço!</mat-error>
+                <mat-label>Profissional</mat-label>
+                <mat-select required>
+                    <mat-option *ngFor="let profissional of profissionais" [value]="profissional.id">
+                        {{ profissional.nome }}
+                    </mat-option>
+                </mat-select>
+                <mat-error>Selecione um profissional!</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Data" formControlName="data" required />
-                <mat-error>Preencha o campo data corretamente!</mat-error>
+                <mat-label>Serviço</mat-label>
+                <mat-select required>
+                    <mat-option *ngFor="let servico of servicos" [value]="servico.id">
+                        {{ servico.nome }}
+                    </mat-option>
+                </mat-select>
+                <mat-error>Selecione um serviço!</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Data da consulta</mat-label>
+                <input matInput [matDatepicker]="picker" />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <div class="acoes">
-                <button mat-raised-button color="primary" [disabled]="!fGroup.valid">Salvar</button>
+                <button mat-raised-button color="primary" [disabled]="!fGroup.valid">Agendar</button>
 
                 <button type="button" class="btn-warning" mat-raised-button mat-dialog-close>Cancelar</button>
             </div>
