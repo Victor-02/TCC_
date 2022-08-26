@@ -18,7 +18,7 @@ import javax.validation.Valid;
 public class AgendamentoController {
 
     final AgendamentoService service;
-    private final Logger logger = LoggerFactory.getLogger(ImportController.class);
+    private final Logger logger = LoggerFactory.getLogger(AgendamentoController.class);
 
     public AgendamentoController(AgendamentoService service) {
         this.service = service;
@@ -48,6 +48,4 @@ public class AgendamentoController {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
-
 }
