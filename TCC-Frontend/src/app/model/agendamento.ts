@@ -3,4 +3,5 @@ export interface Agendamento {
     data: string;
     servico: string;
     paciente: string;
+    profissional: string;
 }
