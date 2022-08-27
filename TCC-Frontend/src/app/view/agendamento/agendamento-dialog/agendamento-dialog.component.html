@@ -5,8 +5,8 @@
         <form class="form-padrao" *ngIf="fGroup" [formGroup]="fGroup" (ngSubmit)="fGroup.valid && salvar()" noValidate>
             <mat-form-field>
                 <mat-label>Paciente</mat-label>
-                <mat-select required>
-                    <mat-option *ngFor="let paciente of pacientes" [value]="paciente.id">
+                <mat-select required formControlName="paciente">
+                    <mat-option *ngFor="let paciente of pacientes" [value]="paciente">
                         {{ paciente.nome }}
                     </mat-option>
                 </mat-select>
@@ -14,8 +14,8 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Profissional</mat-label>
-                <mat-select required>
-                    <mat-option *ngFor="let profissional of profissionais" [value]="profissional.id">
+                <mat-select required formControlName="profissional">
+                    <mat-option *ngFor="let profissional of profissionais" [value]="profissional">
                         {{ profissional.nome }}
                     </mat-option>
                 </mat-select>
@@ -23,8 +23,8 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Serviço</mat-label>
-                <mat-select required>
-                    <mat-option *ngFor="let servico of servicos" [value]="servico.id">
+                <mat-select required formControlName="servico">
+                    <mat-option *ngFor="let servico of servicos" [value]="servico">
                         {{ servico.nome }}
                     </mat-option>
                 </mat-select>
@@ -32,7 +32,7 @@
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Data da consulta</mat-label>
-                <input matInput [matDatepicker]="picker" />
+                <input matInput [matDatepicker]="picker" formControlName="data" />
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>

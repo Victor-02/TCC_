@@ -26,21 +26,21 @@ export class AgendamentoDialogComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private service: AgendamentoService,
-        private servicePaciente: PacienteService,
-        private serviceProfissional: ProfissionalService,
-        private serviceServico: ServicoService,
+        private pacienteService: PacienteService,
+        private profissionalService: ProfissionalService,
+        private servicoService: ServicoService,
         private router: Router,
         private snackBar: MatSnackBar,
         private activatedRoute: ActivatedRoute
     ) {}
 
     ngOnInit(): void {
-        this.agendamento = this.activatedRoute.snapshot.data['agendamento'];
-
+        this.preencheDados();
         this.fGroup = this.formBuilder.group({
             paciente: ['', Validators.required],
-            data: ['', Validators.required],
+            profissional: ['', Validators.required],
             servico: ['', Validators.required],
+            data: ['', Validators.required],
         });
     }
 
@@ -59,7 +59,7 @@ export class AgendamentoDialogComponent implements OnInit {
     }
 
     buscarPaciente() {
-        return this.servicePaciente.buscarTodos().subscribe({
+        return this.pacienteService.buscarTodos().subscribe({
             next: (data) => (this.pacientes = data),
         });
     }
@@ -72,6 +72,8 @@ export class AgendamentoDialogComponent implements OnInit {
     }
 
     private preencheDados() {
-        this.servicePaciente;
+        this.pacienteService.buscarTodos().subscribe((data) => (this.pacientes = data));
+        this.profissionalService.buscarTodos().subscribe((data) => (this.profissionais = data));
+        this.servicoService.buscarTodos().subscribe((data) => (this.servicos = data));
     }
 }
