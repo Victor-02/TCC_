@@ -1,5 +1,6 @@
 package com.tcc.tccbackend.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class Servico implements Serializable {
     private Double preco;
 
     @OneToMany (mappedBy = "servico")
+    @JsonManagedReference
     private List<Agendamento> agendamentos;
 
 }

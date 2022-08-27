@@ -1,5 +1,7 @@
 package com.tcc.tccbackend.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,14 +22,18 @@ public class Agendamento implements Serializable {
     @NotBlank
     private String data;
 
+
     @ManyToOne
     @JoinColumn(name = "servico_id")
+    @JsonBackReference
     private Servico servico;
 
-    @OneToOne
+    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "profissional_id")
     private Profissional profissional;

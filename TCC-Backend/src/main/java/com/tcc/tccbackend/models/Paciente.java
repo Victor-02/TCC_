@@ -1,5 +1,6 @@
 package com.tcc.tccbackend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -8,6 +9,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -40,6 +42,7 @@ public class Paciente implements Serializable {
     @Column
     private Date dataNascimento;
 
-    @OneToOne(mappedBy="paciente")
-    private Agendamento agendamento;
+    @OneToMany(mappedBy="paciente")
+    @JsonIgnore
+    private List<Agendamento> agendamentos;
 }
