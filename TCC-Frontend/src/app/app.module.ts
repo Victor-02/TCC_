@@ -11,9 +11,10 @@ import { AgendamentoComponent } from './view/agendamento/agendamento.component';
 import { AgendamentoCadastrarComponent } from './view/agendamento/agendamento-cadastrar/agendamento-cadastrar.component';
 import { LoginComponent } from './view/login/login.component';
 import { AgendamentoDialogComponent } from './view/agendamento/agendamento-dialog/agendamento-dialog.component';
+import { ServicoComponent } from './view/servico/servico.component';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, AgendamentoComponent, AgendamentoCadastrarComponent, LoginComponent, AgendamentoDialogComponent],
+    declarations: [AppComponent, HomeComponent, AgendamentoComponent, AgendamentoCadastrarComponent, LoginComponent, AgendamentoDialogComponent, ServicoComponent],
     imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatImportsModule, HttpClientModule],
     providers: [],
     bootstrap: [AppComponent],

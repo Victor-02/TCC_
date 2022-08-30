@@ -46,7 +46,7 @@ export class AgendamentoDialogComponent implements OnInit {
 
     salvar() {
         this.service.salvar(this.fGroup.value).subscribe({
-            next: () => this.router.navigateByUrl('/agendamentos'),
+            next: () => window.location.reload(),
             error: () => this.onErrorAgendamento(),
         });
     }
