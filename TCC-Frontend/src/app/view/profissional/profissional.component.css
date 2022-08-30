@@ -1,0 +1,19 @@
+table {
+    width: 100%;
+}
+
+.mat-row:hover .mat-cell {
+    background-color: rgba(209, 209, 209, 0.2);
+}
+
+.table-container {
+    max-height: 65rem;
+    overflow: auto !important;
+    background-color: white;
+}
+
+.spinner {
+    position: relative;
+    margin-left: 45%;
+    margin-top: 10%;
+}
