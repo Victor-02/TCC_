@@ -12,7 +12,7 @@ export class ServicoService {
     private readonly endPoint = 'servicos';
     constructor(private httpClient: HttpClient) {}
 
-    listarProfissionais(page = 0, size = 10): Observable<ResponsePageable> {
+    listarServicos(page = 0, size = 10): Observable<ResponsePageable> {
         const httpHeader = new HttpHeaders();
         let pageable = new HttpParams();
         pageable = pageable.append('page', page);
