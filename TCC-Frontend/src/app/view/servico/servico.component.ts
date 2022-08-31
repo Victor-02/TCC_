@@ -1,11 +1,12 @@
-import { Servico } from './../../model/servico';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServicoService } from 'app/service/servico.service';
-import { AgendamentoDialogComponent } from '../agendamento/agendamento-dialog/agendamento-dialog.component';
 import { Paginator } from 'app/shared/paginator/paginator.class';
+
+import { Servico } from './../../model/servico';
+import { ServicoDialogComponent } from './servico-dialog/servico-dialog.component';
 
 @Component({
     selector: 'app-servico',
@@ -25,7 +26,7 @@ export class ServicoComponent implements OnInit {
     }
 
     openDialog(): void {
-        const dialogRef = this.dialog.open(AgendamentoDialogComponent, {});
+        const dialogRef = this.dialog.open(ServicoDialogComponent, {});
     }
 
     listarServico() {
