@@ -11,8 +11,8 @@ const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'servico', component: ServicoComponent },
-    { path: 'profissional', component: ProfissionalComponent },
+    { path: 'servicos', component: ServicoComponent },
+    { path: 'profissionais', component: ProfissionalComponent },
     { path: 'agendamentos', component: AgendamentoComponent },
     { path: 'agendamentos-cadastro', component: AgendamentoCadastrarComponent },
 
