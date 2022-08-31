@@ -1,15 +1,20 @@
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
+import { Observable, map, shareReplay } from 'rxjs';
 
 @Component({
-  selector: 'app-main-nav',
-  templateUrl: './main-nav.component.html',
-  styleUrls: ['./main-nav.component.css']
+    selector: 'app-main-nav',
+    templateUrl: './main-nav.component.html',
+    styleUrls: ['./main-nav.component.css'],
 })
 export class MainNavComponent implements OnInit {
+    title = 'TCC';
 
-  constructor() { }
+    isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+        map((result) => result.matches),
+        shareReplay()
+    );
 
-  ngOnInit(): void {
-  }
-
+    constructor(private breakpointObserver: BreakpointObserver) {}
+    ngOnInit() {}
 }
