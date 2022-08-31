@@ -182,7 +182,7 @@ public class PacienteService {
     }
 
     private List<PacienteDTO> transfer ( List<Paciente> pacientes) {
-        List<PacienteDTO> PacienteDTOList = new ArrayList();
+        List<PacienteDTO> PacienteDTOList = new ArrayList<>();
         for(Paciente paciente : pacientes) {
             PacienteDTO dto = mapper.map(paciente, PacienteDTO.class);
             PacienteDTOList.add(dto);

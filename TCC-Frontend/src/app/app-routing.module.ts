@@ -4,6 +4,7 @@ import { AgendamentoCadastrarComponent } from './view/agendamento/agendamento-ca
 import { AgendamentoComponent } from './view/agendamento/agendamento.component';
 import { HomeComponent } from './view/home/home.component';
 import { LoginComponent } from './view/login/login.component';
+import { ProfissionalComponent } from './view/profissional/profissional.component';
 import { ServicoComponent } from './view/servico/servico.component';
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'servico', component: ServicoComponent },
+    { path: 'profissional', component: ProfissionalComponent },
     { path: 'agendamentos', component: AgendamentoComponent },
     { path: 'agendamentos-cadastro', component: AgendamentoCadastrarComponent },
 
