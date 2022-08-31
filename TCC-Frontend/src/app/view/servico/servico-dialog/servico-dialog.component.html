@@ -1,1 +1,23 @@
-<p>servico-dialog works!</p>
+<div class="container p-3">
+    <h2 mat-dialog-title>Cadastrar Serviço</h2>
+
+    <mat-dialog-content>
+        <form class="form-padrao" *ngIf="fGroup" [formGroup]="fGroup" (ngSubmit)="fGroup.valid && salvar()" noValidate>
+            <mat-form-field>
+                <mat-label>Nome</mat-label>
+                <input matInput placeholder="Nome" formControlName="nome" required />
+                <mat-error>Preencha o campo corretamente!</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Preço</mat-label>
+                <input matInput placeholder="Preço" formControlName="preco" required />
+                <mat-error>Preencha o campo corretamente!</mat-error>
+            </mat-form-field>
+            <div class="acoes">
+                <button mat-raised-button color="primary" [disabled]="!fGroup.valid">Cadastrar</button>
+
+                <button type="button" class="btn-warning" mat-raised-button mat-dialog-close>Cancelar</button>
+            </div>
+        </form>
+    </mat-dialog-content>
+</div>
