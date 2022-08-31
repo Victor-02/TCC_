@@ -15,9 +15,10 @@ import { ServicoComponent } from './view/servico/servico.component';
 import { ProfissionalComponent } from './view/profissional/profissional.component';
 import { ServicoDialogComponent } from './view/servico/servico-dialog/servico-dialog.component';
 import { ProfissionalDialogComponent } from './view/profissional/profissional-dialog/profissional-dialog.component';
+import { MainNavComponent } from './view/main-nav/main-nav.component';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, AgendamentoComponent, AgendamentoCadastrarComponent, LoginComponent, AgendamentoDialogComponent, ServicoComponent, ProfissionalComponent, ServicoDialogComponent, ProfissionalDialogComponent],
+    declarations: [AppComponent, HomeComponent, AgendamentoComponent, AgendamentoCadastrarComponent, LoginComponent, AgendamentoDialogComponent, ServicoComponent, ProfissionalComponent, ServicoDialogComponent, ProfissionalDialogComponent, MainNavComponent],
     imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatImportsModule, HttpClientModule],
     providers: [],
     bootstrap: [AppComponent],
