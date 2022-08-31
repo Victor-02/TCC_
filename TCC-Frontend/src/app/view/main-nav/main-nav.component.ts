@@ -1,6 +1,6 @@
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
-import { Observable, map, shareReplay } from 'rxjs';
+import { map, Observable, shareReplay } from 'rxjs';
 
 @Component({
     selector: 'app-main-nav',

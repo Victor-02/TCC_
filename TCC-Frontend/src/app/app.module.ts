@@ -5,20 +5,32 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './view/home/home.component';
 import { MatImportsModule } from './shared/mat-imports/mat-imports.module';
-import { AgendamentoComponent } from './view/agendamento/agendamento.component';
 import { AgendamentoCadastrarComponent } from './view/agendamento/agendamento-cadastrar/agendamento-cadastrar.component';
-import { LoginComponent } from './view/login/login.component';
 import { AgendamentoDialogComponent } from './view/agendamento/agendamento-dialog/agendamento-dialog.component';
-import { ServicoComponent } from './view/servico/servico.component';
+import { AgendamentoComponent } from './view/agendamento/agendamento.component';
+import { HomeComponent } from './view/home/home.component';
+import { LoginComponent } from './view/login/login.component';
+import { MainNavComponent } from './view/main-nav/main-nav.component';
+import { ProfissionalDialogComponent } from './view/profissional/profissional-dialog/profissional-dialog.component';
 import { ProfissionalComponent } from './view/profissional/profissional.component';
 import { ServicoDialogComponent } from './view/servico/servico-dialog/servico-dialog.component';
-import { ProfissionalDialogComponent } from './view/profissional/profissional-dialog/profissional-dialog.component';
-import { MainNavComponent } from './view/main-nav/main-nav.component';
+import { ServicoComponent } from './view/servico/servico.component';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, AgendamentoComponent, AgendamentoCadastrarComponent, LoginComponent, AgendamentoDialogComponent, ServicoComponent, ProfissionalComponent, ServicoDialogComponent, ProfissionalDialogComponent, MainNavComponent],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        AgendamentoComponent,
+        AgendamentoCadastrarComponent,
+        LoginComponent,
+        AgendamentoDialogComponent,
+        ServicoComponent,
+        ProfissionalComponent,
+        ServicoDialogComponent,
+        ProfissionalDialogComponent,
+        MainNavComponent,
+    ],
     imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatImportsModule, HttpClientModule],
     providers: [],
     bootstrap: [AppComponent],
