@@ -5,7 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Profissional } from 'app/model/profissional';
 import { ProfissionalService } from 'app/service/profissional.service';
 import { Paginator } from 'app/shared/paginator/paginator.class';
-import { AgendamentoDialogComponent } from '../agendamento/agendamento-dialog/agendamento-dialog.component';
+
+import { ProfissionalDialogComponent } from './profissional-dialog/profissional-dialog.component';
 
 @Component({
     selector: 'app-profissional',
@@ -25,7 +26,7 @@ export class ProfissionalComponent implements OnInit {
     }
 
     openDialog(): void {
-        const dialogRef = this.dialog.open(AgendamentoDialogComponent, {});
+        const dialogRef = this.dialog.open(ProfissionalDialogComponent, {});
     }
 
     listarProfissional() {
