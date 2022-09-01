@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { config } from 'app/config/environment';
 import { Profissional } from 'app/model/profissional';
 import { ResponsePageable } from 'app/shared/Paginacao';
 import { Observable } from 'rxjs';
@@ -8,7 +9,6 @@ import { Observable } from 'rxjs';
     providedIn: 'root',
 })
 export class ProfissionalService {
-    private readonly baseURL = 'http://localhost:8080/api';
     private readonly endPoint = 'profissionais';
     constructor(private httpClient: HttpClient) {}
 
@@ -17,24 +17,24 @@ export class ProfissionalService {
         let pageable = new HttpParams();
         pageable = pageable.append('page', page);
         pageable = pageable.append('size', size);
-        return this.httpClient.get<ResponsePageable>(`${this.baseURL}/${this.endPoint}`, {
+        return this.httpClient.get<ResponsePageable>(`${config.apiUrl}/${this.endPoint}`, {
             headers: httpHeader,
             params: pageable,
         });
     }
 
     salvar(profissional: Profissional): Observable<Profissional> {
-        return this.httpClient.post<Profissional>(`${this.baseURL}/${this.endPoint}`, profissional);
+        return this.httpClient.post<Profissional>(`${config.apiUrl}/${this.endPoint}`, profissional);
     }
 
     pesquisarPorId(id: number): Observable<Profissional> {
-        return this.httpClient.get<Profissional>(`${this.baseURL}/${this.endPoint}/${id}`);
+        return this.httpClient.get<Profissional>(`${config.apiUrl}/${this.endPoint}/${id}`);
     }
 
     delete(profissional: Profissional): Observable<{}> {
-        return this.httpClient.delete<Profissional>(`${this.baseURL}/${this.endPoint}/${profissional.id}`);
+        return this.httpClient.delete<Profissional>(`${config.apiUrl}/${this.endPoint}/${profissional.id}`);
     }
     buscarTodos(): Observable<Profissional[]> {
-        return this.httpClient.get<Profissional[]>(`${this.baseURL}/${this.endPoint}/all`);
+        return this.httpClient.get<Profissional[]>(`${config.apiUrl}/${this.endPoint}/all`);
     }
 }

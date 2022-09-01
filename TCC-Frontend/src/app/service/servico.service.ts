@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { config } from 'app/config/environment';
 import { Servico } from 'app/model/servico';
 import { ResponsePageable } from 'app/shared/Paginacao';
 import { Observable } from 'rxjs';
@@ -8,7 +9,6 @@ import { Observable } from 'rxjs';
     providedIn: 'root',
 })
 export class ServicoService {
-    private readonly baseURL = 'http://localhost:8080/api';
     private readonly endPoint = 'servicos';
     constructor(private httpClient: HttpClient) {}
 
@@ -17,24 +17,24 @@ export class ServicoService {
         let pageable = new HttpParams();
         pageable = pageable.append('page', page);
         pageable = pageable.append('size', size);
-        return this.httpClient.get<ResponsePageable>(`${this.baseURL}/${this.endPoint}`, {
+        return this.httpClient.get<ResponsePageable>(`${config.apiUrl}/${this.endPoint}`, {
             headers: httpHeader,
             params: pageable,
         });
     }
 
     salvar(servico: Servico): Observable<Servico> {
-        return this.httpClient.post<Servico>(`${this.baseURL}/${this.endPoint}`, servico);
+        return this.httpClient.post<Servico>(`${config.apiUrl}/${this.endPoint}`, servico);
     }
 
     pesquisarPorId(id: number): Observable<Servico> {
-        return this.httpClient.get<Servico>(`${this.baseURL}/${this.endPoint}/${id}`);
+        return this.httpClient.get<Servico>(`${config.apiUrl}/${this.endPoint}/${id}`);
     }
 
     delete(servico: Servico): Observable<{}> {
-        return this.httpClient.delete<Servico>(`${this.baseURL}/${this.endPoint}/${servico.id}`);
+        return this.httpClient.delete<Servico>(`${config.apiUrl}/${this.endPoint}/${servico.id}`);
     }
     buscarTodos(): Observable<Servico[]> {
-        return this.httpClient.get<Servico[]>(`${this.baseURL}/${this.endPoint}/all`);
+        return this.httpClient.get<Servico[]>(`${config.apiUrl}/${this.endPoint}/all`);
     }
 }

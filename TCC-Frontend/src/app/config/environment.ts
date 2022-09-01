@@ -1,8 +1,11 @@
-import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { environment } from 'environments/environment';
 
-export const environment = {
-    production: false,
+export const httpHeaders: HttpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+});
+
+export const config = {
+    apiUrl: environment.API_URL,
+    httpHeaders: httpHeaders,
 };
-
-const httpHeaders = new HttpHeaders();
-const httpParams = new HttpParams();
