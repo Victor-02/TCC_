@@ -41,7 +41,7 @@ public class ImportController {
         String path = UUID.randomUUID() + "." + extrairExtensao(Objects.requireNonNull(file.getOriginalFilename()));
 
         try {
-            List<Paciente> pacientes = pacienteService.converteArquivo(file);
+            List<Paciente> pacientes = pacienteService.converter(file);
             pacienteService.saveAll(pacientes);
             Files.copy(file.getInputStream(), Path.of(path), StandardCopyOption.REPLACE_EXISTING);
 

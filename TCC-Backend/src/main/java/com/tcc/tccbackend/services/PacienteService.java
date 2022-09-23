@@ -3,6 +3,8 @@ package com.tcc.tccbackend.services;
 import com.tcc.tccbackend.dtos.PacienteDTO;
 import com.tcc.tccbackend.models.Paciente;
 import com.tcc.tccbackend.repository.PacienteRepository;
+import com.tcc.tccbackend.utils.ConverterToData;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;
@@ -127,5 +129,9 @@ public class PacienteService {
             PacienteDTOList.add(dto);
         }
         return PacienteDTOList;
+    }
+
+    public List<Paciente> converter(MultipartFile file) throws IOException{
+        return ConverterToData.converteArquivo(file);
     }
 }

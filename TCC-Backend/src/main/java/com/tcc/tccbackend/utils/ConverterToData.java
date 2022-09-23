@@ -21,7 +21,7 @@ import com.tcc.tccbackend.models.Paciente;
 
 public class ConverterToData {
     
-    public List<Paciente> converteArquivo(MultipartFile file) throws IOException {
+    public static List<Paciente> converteArquivo(MultipartFile file) throws IOException {
 
         List<Paciente> pacientes = new ArrayList<>();
 
