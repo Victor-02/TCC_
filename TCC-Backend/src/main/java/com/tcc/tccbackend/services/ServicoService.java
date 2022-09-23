@@ -1,11 +1,15 @@
 package com.tcc.tccbackend.services;
 
+import com.tcc.tccbackend.dtos.ServicoDTO;
 import com.tcc.tccbackend.models.Servico;
 import com.tcc.tccbackend.repository.ServicoRepository;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
@@ -13,11 +17,12 @@ import javax.persistence.EntityNotFoundException;
 @Service
 public class ServicoService {
 
-    final
-    ServicoRepository repository;
+    final ServicoRepository repository;
+    final ModelMapper mapper;
 
-    public ServicoService(ServicoRepository repository) {
+    public ServicoService(ServicoRepository repository, ModelMapper mapper) {
         this.repository = repository;
+        this.mapper = mapper;
     }
 
     public Servico save(Servico servico) {
@@ -42,9 +47,9 @@ public class ServicoService {
         }
     }
 
-    public List<Servico> getAll(){
+    public List<ServicoDTO> getAll(){
         try {
-            return repository.findAll();
+            return transfer(repository.findAll());
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -57,5 +62,14 @@ public class ServicoService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private List<ServicoDTO> transfer ( List<Servico> servicos) {
+        List<ServicoDTO> ServicoDTOList = new ArrayList<>();
+        for(Servico servico : servicos) {
+            ServicoDTO dto = mapper.map(servico, ServicoDTO.class);
+            ServicoDTOList.add(dto);
+        }
+        return ServicoDTOList;
     }
 }
