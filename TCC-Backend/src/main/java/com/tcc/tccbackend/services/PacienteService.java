@@ -1,18 +1,11 @@
 package com.tcc.tccbackend.services;
 
-import com.tcc.tccbackend.dtos.PacienteDTO;
-import com.tcc.tccbackend.models.Paciente;
-import com.tcc.tccbackend.repository.PacienteRepository;
-import com.tcc.tccbackend.utils.ConverterToData;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.DataFormat;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.util.DateFormatConverter;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import javax.persistence.EntityNotFoundException;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -21,13 +14,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.EntityNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
+import com.tcc.tccbackend.dtos.PacienteDTO;
+import com.tcc.tccbackend.models.Paciente;
+import com.tcc.tccbackend.repository.PacienteRepository;
+import com.tcc.tccbackend.utils.ConverterToData;
 
 @Service
 public class PacienteService {
