@@ -1,16 +1,26 @@
 package com.tcc.tccbackend.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
-@Data
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "agendamento")
+@NoArgsConstructor
+@Data
 public class Agendamento implements Serializable {
 
     @Id
@@ -25,17 +35,17 @@ public class Agendamento implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "servico_id")
-    @JsonBackReference
+    @JsonBackReference(value = "servico_id")
     private Servico servico;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "paciente_id")
+    @JsonBackReference(value = "paciente_id")
     private Paciente paciente;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "profissional_id")
+    @JsonBackReference(value = "profissional_id")
     private Profissional profissional;
 
 }

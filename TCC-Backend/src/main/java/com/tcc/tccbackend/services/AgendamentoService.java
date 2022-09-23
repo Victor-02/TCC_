@@ -3,6 +3,8 @@ package com.tcc.tccbackend.services;
 import com.tcc.tccbackend.models.Agendamento;
 import com.tcc.tccbackend.repository.AgendamentoRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -38,20 +40,33 @@ public class AgendamentoService {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Agendamento não encontrado: " + id));
     }
 
-    public Page<Agendamento> getAll(Pageable page) {
-        try {
-            return repository.findAll(page);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     public void deleteById(Integer id) {
         try {
             repository.deleteById(id);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public List<Object[]> getAll2() {
+        return repository.agendamentos();
+    }
+
+    private Page toPage(List<Object[]> list, Pageable pageable){
+        int start = (int)pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), list.size());
+        Page<Agendamento> page = new PageImpl(list.subList(start, end), pageable, list.size());
+        return page;
+    }
+
+    public Page<Object[]> getAll(Pageable page) {
+        try {
+            Pageable pageable = PageRequest.of(page.getPageNumber(), page.getPageSize());
+            Page<Object[]> pacientesPage = toPage(repository.agendamentos(), pageable);
+            return pacientesPage;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

@@ -3,6 +3,9 @@ package com.tcc.tccbackend.models;
 import lombok.Data;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 @Data
@@ -31,5 +34,6 @@ public class Profissional {
 
     @Column
     @OneToMany(mappedBy = "profissional")
+    @JsonManagedReference(value = "profissional_id")
     private List<Agendamento> agendamentos;
 }

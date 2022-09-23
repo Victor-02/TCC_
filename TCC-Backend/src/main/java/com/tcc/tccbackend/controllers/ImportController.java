@@ -47,11 +47,10 @@ public class ImportController {
 
             Import importacao = new Import(path, formatter(LocalDate.now()));
             importService.saveImport(importacao);
-            return new ResponseEntity<>("{\"Arquivo carregado com sucesso!\"}", HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             logger.error("Erro: ", e);
-            return new ResponseEntity<>("{\"Erro ao carregar o arquivo!\"}",
-                    HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

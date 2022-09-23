@@ -1,6 +1,8 @@
 package com.tcc.tccbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -43,6 +45,6 @@ public class Paciente implements Serializable {
     private Date dataNascimento;
 
     @OneToMany(mappedBy="paciente")
-    @JsonIgnore
+    @JsonManagedReference(value = "paciente_id")
     private List<Agendamento> agendamentos;
 }

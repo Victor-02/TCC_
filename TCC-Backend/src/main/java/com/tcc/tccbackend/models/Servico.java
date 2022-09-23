@@ -24,7 +24,7 @@ public class Servico implements Serializable {
     private Double preco;
 
     @OneToMany (mappedBy = "servico")
-    @JsonManagedReference
+    @JsonManagedReference(value = "servico_id")
     private List<Agendamento> agendamentos;
 
 }
