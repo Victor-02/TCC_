@@ -46,7 +46,14 @@ export class AgendamentoDialogComponent implements OnInit {
 
     salvar() {
         this.service.salvar(this.fGroup.value).subscribe({
-            next: () => window.location.reload(),
+            next: () =>
+                console.log(
+                    this.fGroup.value.paciente.id,
+                    this.fGroup.value.servico.id,
+                    this.fGroup.value.profissional.id,
+                    this.fGroup.value
+                ),
+            // next: () => window.location.reload(),
             error: () => this.onErrorAgendamento(),
         });
     }

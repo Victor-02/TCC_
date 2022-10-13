@@ -24,7 +24,10 @@ export class AgendamentoService {
     }
 
     salvar(agendamento: Agendamento): Observable<Agendamento> {
-        return this.httpClient.post<Agendamento>(`${config.apiUrl}/${this.endPoint}`, agendamento);
+        const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+        return this.httpClient.post<Agendamento>(`${config.apiUrl}/${this.endPoint}`, agendamento, {
+            headers: headers,
+        });
     }
 
     pesquisarPorId(id: number): Observable<Agendamento> {

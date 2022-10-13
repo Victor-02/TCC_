@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AgendamentoCadastrarComponent } from './view/agendamento/agendamento-cadastrar/agendamento-cadastrar.component';
 import { AgendamentoComponent } from './view/agendamento/agendamento.component';
 import { HomeComponent } from './view/home/home.component';
 import { LoginComponent } from './view/login/login.component';
@@ -22,7 +21,6 @@ const routes: Routes = [
             { path: 'servicos', component: ServicoComponent },
             { path: 'profissionais', component: ProfissionalComponent },
             { path: 'agendamentos', component: AgendamentoComponent },
-            { path: 'agendamentos-cadastro', component: AgendamentoCadastrarComponent },
         ],
     },
     { path: 'login', component: LoginComponent },
