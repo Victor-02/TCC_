@@ -31,6 +31,7 @@ export class PacienteComponent implements OnInit {
     }
 
     listarPages() {
+        this.loading = true;
         this.service.listarPages(this.paginator.page, this.paginator.size).subscribe({
             next: (data) => {
                 this.paginator.records = data.content;

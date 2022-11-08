@@ -48,8 +48,8 @@ public class AgendamentoService {
         }
     }
 
-    public List<Object[]> getAll2() {
-        return repository.agendamentos();
+    public List<Agendamento> getAll2() {
+        return repository.findAll();
     }
 
     private Page toPage(List<Object[]> list, Pageable pageable){

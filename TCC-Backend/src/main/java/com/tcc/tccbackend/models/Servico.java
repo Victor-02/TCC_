@@ -23,6 +23,7 @@ public class Servico implements Serializable {
     @Column
     private Double preco;
 
+    @Column
     @OneToMany (mappedBy = "servico")
     @JsonManagedReference(value = "servico_id")
     private List<Agendamento> agendamentos;
