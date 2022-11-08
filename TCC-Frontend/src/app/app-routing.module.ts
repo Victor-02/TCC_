@@ -23,7 +23,7 @@ const routes: Routes = [
             { path: 'agendamentos', component: AgendamentoComponent },
         ],
     },
-    { path: 'login', component: LoginComponent },
+    { path: 'loginn', component: LoginComponent },
 ];
 
 @NgModule({

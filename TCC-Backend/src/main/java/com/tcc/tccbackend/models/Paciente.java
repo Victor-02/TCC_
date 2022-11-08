@@ -23,22 +23,16 @@ public class Paciente implements Serializable {
     @Column
     private Integer id;
 
-    @Column
-    @NotBlank
+    @Colum
     private String nome;
 
     @Column
-    @NotBlank
-    @Email
     private String email;
 
     @Column
-    @NotBlank
-    @CPF
     private String cpf;
 
     @Column
-    @NotBlank
     private String telefone;
 
     @Column
