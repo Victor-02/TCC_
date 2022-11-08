@@ -47,9 +47,10 @@ public class ServicoService {
         }
     }
 
-    public List<ServicoDTO> getAll(){
+    public List<Servico> getAll(){
         try {
-            return transfer(repository.findAll());
+            //return transfer(repository.findAll());
+            return repository.findAll();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
