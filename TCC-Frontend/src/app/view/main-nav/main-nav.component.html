@@ -12,6 +12,7 @@
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
     crossorigin="anonymous"></script>
 <script src="../shared/sweetalert/index.js"></script>
+
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav
         #drawer
@@ -22,6 +23,7 @@
         [opened]="(isHandset$ | async) === false">
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
+            <a mat-list-item href="login">Logout</a>
             <a mat-list-item href="">Home</a>
             <a mat-list-item href="pacientes">Pacientes</a>
             <a mat-list-item href="agendamentos">Agendamentos</a>
@@ -40,6 +42,7 @@
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
             <span>TCC</span>
+            <span class="d-flex flex-row-reverse">Logout</span>
         </mat-toolbar>
         <!-- Add Content Here -->
         <router-outlet></router-outlet>
