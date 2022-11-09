@@ -10,7 +10,7 @@ import { Paciente } from '../model/paciente';
     providedIn: 'root',
 })
 export class PacienteService {
-    private readonly endPoint = 'pacientess';
+    private readonly endPoint = 'pacientes';
     errorMsg: string | null = null;
 
     constructor(private httpClient: HttpClient) {}
