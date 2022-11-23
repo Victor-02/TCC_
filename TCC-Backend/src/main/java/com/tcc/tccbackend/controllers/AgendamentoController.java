@@ -1,5 +1,6 @@
 package com.tcc.tccbackend.controllers;
 
+import com.tcc.tccbackend.dtos.AgendamentoDTO;
 import com.tcc.tccbackend.dtos.PacienteDTO;
 import com.tcc.tccbackend.models.Agendamento;
 import com.tcc.tccbackend.services.AgendamentoService;
@@ -43,9 +44,16 @@ public class AgendamentoController {
         Agendamento agendamento = service.findById(id);
         return ResponseEntity.ok().body(agendamento);
     }
+
     @GetMapping
     public ResponseEntity<?> getAll(Pageable page) {
-        List<Agendamento> agendamentos = service.getAll2();
+        Page<Object[]> agendamentos = service.getAll(page);
+        return ResponseEntity.ok().body(agendamentos);
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity<?> gettest() {
+        List<AgendamentoDTO> agendamentos = service.getAll2();
         return ResponseEntity.ok().body(agendamentos);
     }
 

@@ -23,7 +23,7 @@ public class Paciente implements Serializable {
     @Column
     private Integer id;
 
-    @Colum
+    @Column
     private String nome;
 
     @Column

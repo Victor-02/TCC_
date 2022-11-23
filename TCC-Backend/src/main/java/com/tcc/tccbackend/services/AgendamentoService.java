@@ -1,7 +1,10 @@
 package com.tcc.tccbackend.services;
 
+
+import com.tcc.tccbackend.dtos.AgendamentoDTO;
 import com.tcc.tccbackend.models.Agendamento;
 import com.tcc.tccbackend.repository.AgendamentoRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -9,14 +12,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class AgendamentoService {
-    final
-    AgendamentoRepository repository;
+    final AgendamentoRepository repository;
+    final ModelMapper mapper;
 
-    public AgendamentoService(AgendamentoRepository repository) {
+    public AgendamentoService(AgendamentoRepository repository, ModelMapper mapper) {
         this.repository = repository;
+        this.mapper = mapper;
     }
 
     public Agendamento save(Agendamento agendamento) {
@@ -48,12 +54,12 @@ public class AgendamentoService {
         }
     }
 
-    public List<Agendamento> getAll2() {
-        return repository.findAll();
+    public List<AgendamentoDTO> getAll2() {
+        return repository.agendamentos3();
     }
 
-    private Page toPage(List<Object[]> list, Pageable pageable){
-        int start = (int)pageable.getOffset();
+    private Page toPage(List<Object[]> list, Pageable pageable) {
+        int start = (int) pageable.getOffset();
         int end = Math.min((start + pageable.getPageSize()), list.size());
         Page<Agendamento> page = new PageImpl(list.subList(start, end), pageable, list.size());
         return page;
@@ -70,5 +76,13 @@ public class AgendamentoService {
         }
     }
 
+    private List<AgendamentoDTO> transfer(List<Object[]> agendamentos) {
+        List<AgendamentoDTO> AgendamentoDTOList = new ArrayList<>();
+        for (Object[] agendamento : agendamentos) {
+            AgendamentoDTO dto = mapper.map(agendamento, AgendamentoDTO.class);
+            AgendamentoDTOList.add(dto);
+        }
+        return AgendamentoDTOList;
+    }
 
 }

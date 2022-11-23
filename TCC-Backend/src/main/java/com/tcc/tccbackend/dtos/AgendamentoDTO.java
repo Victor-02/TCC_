@@ -1,18 +1,30 @@
-import com.tcc.tccbackend.models.Paciente;
-import com.tcc.tccbackend.models.Profissional;
-import com.tcc.tccbackend.models.Servico;
+package com.tcc.tccbackend.dtos;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class AgendamentoDTO {
     private Integer id;
     private String data;
-    private Servico servico;
-    private Paciente paciente;
-    private Profissional profissional;
+    private String servico;
+    private String paciente;
+    private String profissional;
+
+    /*public AgendamentoDTO(Integer id, String data, String servico, String paciente, String profissional) {
+        this.id = id;
+        this.data = data;
+        this.servico = servico;
+        this.paciente = paciente;
+        this.profissional = profissional;
+    }*/
+
+    public AgendamentoDTO(Integer id, String paciente, String data, String profissional, String servico) {
+        this.id = id;
+        this.data = data;
+        this.servico = servico;
+        this.paciente = paciente;
+        this.profissional = profissional;
+    }
 }

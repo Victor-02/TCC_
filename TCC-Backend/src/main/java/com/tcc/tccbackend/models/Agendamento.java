@@ -32,7 +32,6 @@ public class Agendamento implements Serializable {
     @NotBlank
     private String data;
 
-
     @ManyToOne
     @JoinColumn(name = "servico_id")
     @JsonBackReference(value = "servico_id")
