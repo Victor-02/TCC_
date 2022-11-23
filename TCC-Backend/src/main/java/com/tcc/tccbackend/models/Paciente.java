@@ -38,7 +38,7 @@ public class Paciente implements Serializable {
     @Column
     private Date dataNascimento;
 
-    @OneToMany(mappedBy="paciente")
+    @OneToMany(mappedBy="paciente", fetch = FetchType.EAGER)
     @JsonManagedReference(value = "paciente_id")
     private List<Agendamento> agendamentos;
 }

@@ -47,13 +47,7 @@ public class AgendamentoController {
 
     @GetMapping
     public ResponseEntity<?> getAll(Pageable page) {
-        Page<Object[]> agendamentos = service.getAll(page);
-        return ResponseEntity.ok().body(agendamentos);
-    }
-
-    @GetMapping("/test")
-    public ResponseEntity<?> gettest() {
-        List<AgendamentoDTO> agendamentos = service.getAll2();
+        Page<AgendamentoDTO> agendamentos = service.getAll(page);
         return ResponseEntity.ok().body(agendamentos);
     }
 

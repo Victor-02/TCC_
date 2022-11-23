@@ -23,11 +23,4 @@ public class Utils {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return date.format(formatter);
     }
-    public static JSONObject converter(Pageable page){
-        JSONObject jObject = new JSONObject();
-        JSONArray agendamentos = new JSONArray();
-        agendamentos = (JSONArray) agendamentoService.getAll(page);
-        jObject.put("agendamentos", agendamentos);
-        return jObject;
-    }
 }

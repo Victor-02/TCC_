@@ -24,7 +24,7 @@ public class Servico implements Serializable {
     private Double preco;
 
     @Column
-    @OneToMany (mappedBy = "servico")
+    @OneToMany (mappedBy = "servico", fetch = FetchType.EAGER)
     @JsonManagedReference(value = "servico_id")
     private List<Agendamento> agendamentos;
 

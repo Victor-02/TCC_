@@ -11,12 +11,6 @@ import java.util.List;
 @Repository
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Integer> {
 
-    @Query(value = "select new AgendamentoDTO(*) from agendaTest", nativeQuery = true)
-    List<Object[]> agendamentos();
-
-    @Query(value = "select p.nome, a.data, a.id, pro.nome, s.nome " + "from Agendamento a " + "join Paciente p on p.id = a.id " + "join Profissional pro on pro.id = a.id " + "join Servico s on s.id = a.id")
-    List<Agendamento> agendamentos2();
-
     @Query(value = "select new com.tcc.tccbackend.dtos.AgendamentoDTO(a.id, a.data, s.nome, p.nome, pro.nome) " + "from Agendamento a " + "join Paciente p on p.id = a.id " + "join Profissional pro on pro.id = a.id " + "join Servico s on s.id = a.id")
-    List<AgendamentoDTO> agendamentos3();
+    List<AgendamentoDTO> agendamentos();
 }

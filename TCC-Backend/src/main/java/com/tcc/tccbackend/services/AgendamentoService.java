@@ -54,21 +54,17 @@ public class AgendamentoService {
         }
     }
 
-    public List<AgendamentoDTO> getAll2() {
-        return repository.agendamentos3();
-    }
-
-    private Page toPage(List<Object[]> list, Pageable pageable) {
+    private Page toPage(List<AgendamentoDTO> list, Pageable pageable) {
         int start = (int) pageable.getOffset();
         int end = Math.min((start + pageable.getPageSize()), list.size());
         Page<Agendamento> page = new PageImpl(list.subList(start, end), pageable, list.size());
         return page;
     }
 
-    public Page<Object[]> getAll(Pageable page) {
+    public Page<AgendamentoDTO> getAll(Pageable page) {
         try {
             Pageable pageable = PageRequest.of(page.getPageNumber(), page.getPageSize());
-            Page<Object[]> pacientesPage = toPage(repository.agendamentos(), pageable);
+            Page<AgendamentoDTO> pacientesPage = toPage(repository.agendamentos(), pageable);
             return pacientesPage;
         } catch (Exception e) {
             e.printStackTrace();

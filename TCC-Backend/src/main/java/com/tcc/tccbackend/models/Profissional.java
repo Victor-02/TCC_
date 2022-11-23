@@ -33,7 +33,7 @@ public class Profissional {
     private String telefone;
 
     @Column
-    @OneToMany(mappedBy = "profissional")
+    @OneToMany(mappedBy = "profissional", fetch = FetchType.EAGER)
     @JsonManagedReference(value = "profissional_id")
     private List<Agendamento> agendamentos;
 }
