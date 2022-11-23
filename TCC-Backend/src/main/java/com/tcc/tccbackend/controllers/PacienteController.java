@@ -1,12 +1,12 @@
 package com.tcc.tccbackend.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tcc.tccbackend.dtos.PacienteDTO;
 import com.tcc.tccbackend.models.Paciente;
 import com.tcc.tccbackend.services.PacienteService;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -18,12 +18,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pacientes")
-@JsonFormat(pattern="dd/MM/yyyy")
+@JsonFormat(pattern = "dd/MM/yyyy")
 public class PacienteController {
 
-    private final Logger logger = LoggerFactory.getLogger(ImportController.class);
     final PacienteService service;
     final ModelMapper mapper;
+    private final Logger logger = LoggerFactory.getLogger(ImportController.class);
 
     public PacienteController(PacienteService service, ModelMapper mapper) {
         this.service = service;
@@ -42,7 +42,7 @@ public class PacienteController {
         Paciente paciente = service.findById(id);
         PacienteDTO pacienteDTO = this.toPacienteDTO(paciente);
         logger.info("Efetuando busca por ID do veiculo: %d", paciente.getId());
-        return ResponseEntity.ok().body(pacienteDTO); 
+        return ResponseEntity.ok().body(pacienteDTO);
     }
 
     @GetMapping
@@ -50,6 +50,7 @@ public class PacienteController {
         Page<PacienteDTO> pacientes = service.getAllPage(page);
         return ResponseEntity.ok().body(pacientes);
     }
+
     @GetMapping("/all")
     public ResponseEntity<?> getAll() {
         List<PacienteDTO> profissionais = service.getAll();
@@ -57,7 +58,7 @@ public class PacienteController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Paciente>> search(@RequestParam("key") String query){
+    public ResponseEntity<List<Paciente>> search(@RequestParam("key") String query) {
         logger.info("Efetuando busca por CPF do veiculo: %d", query);
         return ResponseEntity.ok(service.searchPacientes(query));
     }
@@ -74,7 +75,7 @@ public class PacienteController {
         return ResponseEntity.noContent().build();
     }
 
-    private PacienteDTO toPacienteDTO(Paciente paciente){
+    private PacienteDTO toPacienteDTO(Paciente paciente) {
         return mapper.map(paciente, PacienteDTO.class);
     }
 

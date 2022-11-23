@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.tcc.tccbackend.utils.Utils;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -116,6 +117,8 @@ public class PacienteService {
         List<PacienteDTO> PacienteDTOList = new ArrayList<>();
         for(Paciente paciente : pacientes) {
             PacienteDTO dto = mapper.map(paciente, PacienteDTO.class);
+            if (paciente.getDataNascimento() != null)
+                dto.setDataNascimento(Utils.toDate(paciente.getDataNascimento()));
             PacienteDTOList.add(dto);
         }
         return PacienteDTOList;

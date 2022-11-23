@@ -1,5 +1,12 @@
 package com.tcc.tccbackend.utils;
 
+import com.tcc.tccbackend.models.Paciente;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.DateFormatConverter;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -7,20 +14,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.DataFormat;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.util.DateFormatConverter;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.tcc.tccbackend.models.Paciente;
-
 public class ConverterToData {
-    
+
     public static List<Paciente> converteArquivo(MultipartFile file) throws IOException {
 
         List<Paciente> pacientes = new ArrayList<>();
@@ -30,7 +25,7 @@ public class ConverterToData {
         final XSSFSheet sheet = workBook.getSheetAt(0);
 
         Iterator<Row> rowIterator = sheet.iterator();
-        
+
         String excelFormatPattern = DateFormatConverter.convert(Locale.US, "dd/MM/yyyy");
 
         CellStyle cellStyle = workBook.createCellStyle();
@@ -44,26 +39,16 @@ public class ConverterToData {
             Paciente paciente = new Paciente();
             pacientes.add(paciente);
 
-            Iterator<Cell> cellIterator = row.iterator();
-            while (cellIterator.hasNext()) {
-                Cell cell = cellIterator.next();
-
+            for (Cell cell : row) {
                 switch (cell.getColumnIndex()) {
-                    case 0:
-                        paciente.setNome(cell.getStringCellValue());
-                        break;
-                    case 1:
-                        paciente.setEmail(cell.getStringCellValue());
-                        break;
-                    case 2:
-                        paciente.setCpf(cell.getStringCellValue());
-                        break;
-                    case 3:
-                        paciente.setTelefone(cell.getStringCellValue());
-                        break;
-                    case 4:
+                    case 0 -> paciente.setNome(cell.getStringCellValue());
+                    case 1 -> paciente.setEmail(cell.getStringCellValue());
+                    case 2 -> paciente.setCpf(cell.getStringCellValue());
+                    case 3 -> paciente.setTelefone(cell.getStringCellValue());
+                    case 4 -> {
+                        /*paciente.setDataNascimento(Utils.toDate(cell.getDateCellValue()));*/
                         paciente.setDataNascimento(cell.getDateCellValue());
-                        break;
+                    }
                 }
             }
         }

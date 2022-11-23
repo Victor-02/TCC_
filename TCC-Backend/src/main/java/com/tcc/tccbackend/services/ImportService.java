@@ -17,12 +17,11 @@ public class ImportService {
         this.repository = repository;
     }
 
-    public Import saveImport(Import importacao) {
+    public void saveImport(Import importacao) {
         try {
-            return repository.save(importacao);
+            repository.save(importacao);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
     }
 

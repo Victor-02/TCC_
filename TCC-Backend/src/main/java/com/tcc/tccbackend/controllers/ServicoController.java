@@ -10,9 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/servicos")
@@ -43,6 +42,7 @@ public class ServicoController {
         Page<Servico> servicos = service.getAllPage(page);
         return ResponseEntity.ok().body(servicos);
     }
+
     @GetMapping("/all")
     public ResponseEntity<?> getAll() {
         List<Servico> servicos = service.getAll();

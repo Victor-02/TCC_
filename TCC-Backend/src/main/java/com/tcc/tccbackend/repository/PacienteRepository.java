@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface PacienteRepository extends JpaRepository<Paciente, Integer> {
 
-List<Paciente> findByCpfContaining(String nome);
+    List<Paciente> findByCpfContaining(String nome);
 }
