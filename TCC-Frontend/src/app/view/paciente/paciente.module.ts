@@ -7,6 +7,7 @@ import { MatImportsModule } from 'app/shared/mat-imports/mat-imports.module';
 import { PacienteCadastrarEditarComponent } from './paciente-cadastrar-editar/paciente-cadastrar-editar.component';
 import { PaginatorComponent } from 'app/shared/paginator/paginator.component';
 import { PacienteImportacaoComponent } from './paciente-importacao/paciente-importacao.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
     declarations: [
@@ -15,6 +16,6 @@ import { PacienteImportacaoComponent } from './paciente-importacao/paciente-impo
         PaginatorComponent,
         PacienteImportacaoComponent,
     ],
-    imports: [CommonModule, PacienteRoutingModule, MatImportsModule],
+    imports: [CommonModule, PacienteRoutingModule, MatImportsModule, NgxMaskModule.forRoot()],
 })
 export class PacienteModule {}

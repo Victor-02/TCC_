@@ -12,15 +12,15 @@
                 <mat-error>Digite um email válido!</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="CPF" formControlName="cpf" required />
+                <input matInput placeholder="CPF" formControlName="cpf" required mask ="000.000.000-00" />
                 <mat-error>Digite um cpf válido!</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Telefone" formControlName="telefone" required />
+                <input matInput placeholder="Telefone" formControlName="telefone" required mask ="(00) 00000-0000" />
                 <mat-error>Digite um telefone válido!</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Data de Nascimento" formControlName="dataNascimento" />
+                <input matInput placeholder="Data de Nascimento" formControlName="dataNascimento" mask ="d0/M0/0000" />
                 <mat-error>Digite uma data válida!</mat-error>
             </mat-form-field>
             <div class="acoes">
