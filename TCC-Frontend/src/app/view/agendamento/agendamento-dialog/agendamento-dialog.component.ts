@@ -1,4 +1,4 @@
-import { Component, OnInit, TestabilityRegistry } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -46,14 +46,7 @@ export class AgendamentoDialogComponent implements OnInit {
 
     salvar() {
         this.service.salvar(this.fGroup.value).subscribe({
-            next: () =>
-                console.log(
-                    this.fGroup.value.paciente.id,
-                    this.fGroup.value.servico.id,
-                    this.fGroup.value.profissional.id,
-                    this.fGroup.value
-                ),
-            // next: () => window.location.reload(),
+            next: () => window.location.reload(),
             error: () => this.onErrorAgendamento(),
         });
     }

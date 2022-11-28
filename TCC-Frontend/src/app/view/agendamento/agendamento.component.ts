@@ -7,7 +7,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Agendamento } from 'app/model/agendamento';
 import { AgendamentoService } from 'app/service/agendamento.service';
 import { Paginator } from 'app/shared/paginator/paginator.class';
-import * as moment from 'moment';
 
 @Component({
     selector: 'app-agendamento',
@@ -21,7 +20,7 @@ export class AgendamentoComponent implements OnInit {
     dateForm = new FormGroup({
         data: new FormControl(''),
     });
-    colunas = ['id', 'paciente', 'servico', 'data'];
+    colunas = ['id', 'profissional', 'paciente', 'servico', 'data'];
     constructor(private service: AgendamentoService, private snackBar: MatSnackBar, public dialog: MatDialog) {}
 
     ngOnInit(): void {
@@ -57,9 +56,5 @@ export class AgendamentoComponent implements OnInit {
         this.paginator.size = event.pageSize;
         this.listarAgenda();
         return event;
-    }
-    filtro(event: any) {
-        let newDate: moment.Moment = moment.utc(this.dateForm.value.data).local();
-        this.dateForm.value.data = newDate.format('YYYY-MM-DD');
     }
 }

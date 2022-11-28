@@ -49,8 +49,7 @@
             <tr mat-row (click)="editar(row.id)" *matRowDef="let row; columns: colunas"></tr>
         </table>
     </div>
-    <app-paginator [options]="paginator" (onGetData)="listarPages()" *NgIf="!loading && !paginator.records">
-    </app-paginator>
+    <app-paginator [options]="paginator" (onGetData)="listarPages()"></app-paginator>
     <div class="acoes mt-3">
         <button mat-raised-button class="btn btn-primary m-3" routerLink="cadastrar">Cadastrar</button>
         <button mat-raised-button class="btn btn-secondary m-2" routerLink="importacao">Importar Arquivos</button>

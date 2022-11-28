@@ -8,34 +8,27 @@
     </div>
     <div *ngIf="!loading && !paginator.records">Nenhum registro carregado!</div>
 
-    <form [formGroup]="dateForm" class="m-2">
-        <mat-form-field appearance="fill">
-            <mat-label>Filtrar por Data</mat-label>
-            <mat-date-range-input [rangePicker]="picker">
-                <input matStartDate placeholder="Data Inicial" />
-                <input matEndDate placeholder="Data Final" />
-            </mat-date-range-input>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-date-range-picker #picker></mat-date-range-picker>
-        </mat-form-field>
-    </form>
     <div class="table-container" [hidden]="loading || !paginator.records">
         <table mat-table [dataSource]="paginator.records">
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef>ID</th>
-                <td mat-cell *matCellDef="let paginator">{{ paginator.records }}</td>
+                <td mat-cell *matCellDef="let agendamento">{{ agendamento.id }}</td>
+            </ng-container>
+            <ng-container matColumnDef="profissional">
+                <th mat-header-cell *matHeaderCellDef>ID</th>
+                <td mat-cell *matCellDef="let agendamento">{{ agendamento.profissional }}</td>
             </ng-container>
             <ng-container matColumnDef="paciente">
                 <th mat-header-cell *matHeaderCellDef>Paciente</th>
-                <td mat-cell *matCellDef="let paginator">{{ paginator.records }}</td>
+                <td mat-cell *matCellDef="let agendamento">{{ agendamento.paciente }}</td>
             </ng-container>
             <ng-container matColumnDef="servico">
                 <th mat-header-cell *matHeaderCellDef>Serviço</th>
-                <td mat-cell *matCellDef="let paginator">{{ paginator.records }}</td>
+                <td mat-cell *matCellDef="let agendamento">{{ agendamento.servico }}</td>
             </ng-container>
             <ng-container matColumnDef="data">
                 <th mat-header-cell *matHeaderCellDef>Data</th>
-                <td mat-cell *matCellDef="let paginator">{{ paginator.records }}</td>
+                <td mat-cell *matCellDef="let agendamento">{{ agendamento.data }}</td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="colunas"></tr>
             <tr mat-row *matRowDef="let row; columns: colunas"></tr>
