@@ -12,7 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class PacienteCadastrarEditarComponent implements OnInit {
     fGroup!: FormGroup;
-    paciente!: Paciente;
+    paciente: Paciente = new Paciente();
+    id: any = 0;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -23,7 +24,12 @@ export class PacienteCadastrarEditarComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.paciente = this.activatedRoute.snapshot.data['paciente'];
+        this.id = this.activatedRoute.snapshot.paramMap.get('id');
+        if (this.id) {
+            this.service.pesquisarPorId(this.id).subscribe({
+                next: (data) => (this.paciente = data),
+            });
+        }
 
         this.fGroup = this.formBuilder.group({
             nome: [this.paciente && this.paciente.nome ? this.paciente.nome : '', Validators.required],

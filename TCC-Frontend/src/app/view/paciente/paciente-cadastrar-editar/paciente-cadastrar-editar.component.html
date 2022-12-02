@@ -4,29 +4,29 @@
     <div class="container">
         <form class="form-padrao" *ngIf="fGroup" [formGroup]="fGroup" (ngSubmit)="fGroup.valid && salvar()" noValidate>
             <mat-form-field>
-                <input matInput placeholder="Nome" formControlName="nome" required />
+                <input matInput placeholder="Nome" formControlName="nome" [(ngModel)]="paciente.nome" required />
                 <mat-error>Digite um nome válido!</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Email" formControlName="email" required />
+                <input matInput placeholder="Email" formControlName="email" [(ngModel)]="paciente.email"  required />
                 <mat-error>Digite um email válido!</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="CPF" formControlName="cpf" required mask ="000.000.000-00" />
+                <input matInput placeholder="CPF" formControlName="cpf" [(ngModel)]="paciente.cpf" required mask ="000.000.000-00" />
                 <mat-error>Digite um cpf válido!</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Telefone" formControlName="telefone" required mask ="(00) 00000-0000" />
+                <input matInput placeholder="Telefone" formControlName="telefone" [(ngModel)]="paciente.telefone" required mask ="(00) 00000-0000" />
                 <mat-error>Digite um telefone válido!</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Data de Nascimento" formControlName="dataNascimento" mask ="d0/M0/0000" />
+                <input matInput placeholder="Data de Nascimento" formControlName="dataNascimento" [(ngModel)]="paciente.dataNascimento" mask ="d0/M0/0000" />
                 <mat-error>Digite uma data válida!</mat-error>
             </mat-form-field>
             <div class="acoes">
                 <button mat-raised-button color="primary" [disabled]="!fGroup.valid">Salvar</button>
                 <button
-                    *ngIf="paciente && paciente.id"
+                    *ngIf="paciente != undefined || paciente != null"
                     class="btn-danger"
                     mat-raised-button
                     type="button"
