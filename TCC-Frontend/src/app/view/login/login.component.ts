@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
                 if (v.responseStatus == 200) {
                     this.cookieService.set('auth', v.token);
                     this.cookieService.set('user', this.loginForm.value.username);
-                    this.router.navigate(['/pacientes']);
+                    this.router.navigate(['/home']);
                 }
             },
             error: () => {
