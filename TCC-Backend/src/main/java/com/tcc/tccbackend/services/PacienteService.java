@@ -59,7 +59,7 @@ public class PacienteService {
     public Page<PacienteDTO> getAllPage(Pageable page) {
         try {
             Pageable pageable = PageRequest.of(page.getPageNumber(), page.getPageSize());
-            List<PacienteDTO> pacientes = transfer(repository.findAll());
+            List<PacienteDTO> pacientes = transfer(repository.findAllByOrderByNome());
             Page<PacienteDTO> pacientesPage = toPage(pacientes, pageable);
             return pacientesPage;
         } catch (Exception e) {
@@ -68,9 +68,9 @@ public class PacienteService {
         }
     }
 
-    public List<PacienteDTO> getAll() {
+    public List<Paciente> getAll() {
         try {
-            return transfer(repository.findAll());
+            return repository.findAll();
             
         } catch (Exception e) {
             e.printStackTrace();

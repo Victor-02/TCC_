@@ -14,3 +14,4 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Intege
     @Query(value = "select new com.tcc.tccbackend.dtos.AgendamentoDTO(a.id, a.data, s.nome, p.nome, pro.nome) " + "from Agendamento a " + "join Paciente p on p.id = a.id " + "join Profissional pro on pro.id = a.id " + "join Servico s on s.id = a.id")
     List<AgendamentoDTO> agendamentos();
 }
+/*umas AS no select*/

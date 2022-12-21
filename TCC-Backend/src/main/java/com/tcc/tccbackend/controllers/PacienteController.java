@@ -53,7 +53,7 @@ public class PacienteController {
 
     @GetMapping("/all")
     public ResponseEntity<?> getAll() {
-        List<PacienteDTO> profissionais = service.getAll();
+        List<Paciente> profissionais = service.getAll();
         return ResponseEntity.ok().body(profissionais);
     }
 

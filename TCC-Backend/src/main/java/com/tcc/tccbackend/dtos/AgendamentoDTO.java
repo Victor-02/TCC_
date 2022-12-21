@@ -12,15 +12,7 @@ public class AgendamentoDTO {
     private String paciente;
     private String profissional;
 
-    /*public AgendamentoDTO(Integer id, String data, String servico, String paciente, String profissional) {
-        this.id = id;
-        this.data = data;
-        this.servico = servico;
-        this.paciente = paciente;
-        this.profissional = profissional;
-    }*/
-
-    public AgendamentoDTO(Integer id, String paciente, String data, String profissional, String servico) {
+    public AgendamentoDTO(Integer id, String data,String servico, String paciente, String profissional) {
         this.id = id;
         this.data = data;
         this.servico = servico;

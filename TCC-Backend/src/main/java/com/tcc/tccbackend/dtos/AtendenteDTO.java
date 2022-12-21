@@ -10,13 +10,7 @@ import javax.validation.constraints.Size;
 @Data
 public class AtendenteDTO {
 
-    @NotBlank
-    @Size(min=3, message="Nome Inválido (mínimo 3 caracteres)")
-    private String nome;
-
-    @NotBlank
-    @Size(min=3, message="Sobrenome Inválido (mínimo 3 caracteres)")
-    private String sobreNome;
+    private Integer id;
 
     @NotBlank
     @Size(min=3, message="Nome Inválido (mínimo 3 caracteres)")
@@ -27,12 +21,8 @@ public class AtendenteDTO {
     private String email;
 
     @NotBlank
-    @Size(min=6, max=15 , message="Senha Inválido (6-15 Caracteres)")
+    @Size(min=5, max=15 , message="Senha Inválido (5-15 Caracteres)")
     private String senha;
-
-    @NotBlank
-    @CPF(message="CPF Inválido")
-    private String cpf;
 
     @NotBlank
     private String telefone;

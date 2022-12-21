@@ -1,4 +1,4 @@
-package com.tcc.tccbackend;
+/*package com.tcc.tccbackend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,4 +10,4 @@ class TccBackendApplicationTests {
     void contextLoads() {
     }
 
-}
+}*/

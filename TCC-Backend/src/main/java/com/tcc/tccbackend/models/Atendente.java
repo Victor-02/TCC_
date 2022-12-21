@@ -23,14 +23,5 @@ public class Atendente {
     private String senha;
 
     @Column
-    private String nome;
-
-    @Column
-    private String SobreNome;
-
-    @Column
-    private String cpf;
-
-    @Column
     private String telefone;
 }
