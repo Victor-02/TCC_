@@ -30,12 +30,18 @@
                 </mat-select>
                 <mat-error>Selecione um serviço!</mat-error>
             </mat-form-field>
+
             <mat-form-field appearance="fill">
                 <mat-label>Data da consulta</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName="data" />
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Horario da Consulta</mat-label>
+                <input matInput type="time" formControlName="horario" #time />
+            </mat-form-field>
+
             <div class="acoes">
                 <button mat-raised-button color="primary" [disabled]="!fGroup.valid">Agendar</button>
 

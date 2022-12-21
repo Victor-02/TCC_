@@ -4,6 +4,6 @@ export class Paciente {
     email?: string;
     cpf?: string;
     telefone?: string;
-    dataNascimento?: string;
+    dataNascimento?: Date;
     sexo?: string;
 }

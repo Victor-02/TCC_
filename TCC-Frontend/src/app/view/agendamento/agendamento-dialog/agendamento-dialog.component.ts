@@ -10,6 +10,7 @@ import { AgendamentoService } from 'app/service/agendamento.service';
 import { PacienteService } from 'app/service/paciente.service';
 import { ProfissionalService } from 'app/service/profissional.service';
 import { ServicoService } from 'app/service/servico.service';
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-agendamento-dialog',
@@ -41,10 +42,15 @@ export class AgendamentoDialogComponent implements OnInit {
             profissional: ['', Validators.required],
             servico: ['', Validators.required],
             data: ['', Validators.required],
+            horario: ['', Validators.required],
         });
     }
 
     salvar() {
+        let newDate: moment.Moment = moment.utc(this.fGroup.value.data).local();
+        this.fGroup.value.data = newDate.format('DD-MM-YYYY') + 'T' + this.fGroup.value.horario;
+        console.log(this.fGroup.value.data);
+
         this.service.salvar(this.fGroup.value).subscribe({
             next: () => window.location.reload(),
             error: () => this.onErrorAgendamento(),
