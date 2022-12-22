@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 
 import { AgendamentoComponent } from './view/agendamento/agendamento.component';
 import { HomeComponent } from './view/home/home.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
             { path: 'profissionais', component: ProfissionalComponent },
             { path: 'agendamentos', component: AgendamentoComponent },
         ],
+        canActivate: [AuthGuard],
     },
     { path: 'login', component: LoginComponent },
 ];
