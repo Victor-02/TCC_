@@ -16,14 +16,13 @@ export class PacienteService {
     constructor(private httpClient: HttpClient) {}
 
     listarPages(page = 0, size = 10): Observable<ResponsePageable> {
-        const httpHeader = new HttpHeaders();
         let pageable = new HttpParams();
 
         pageable = pageable.append('page', page);
         pageable = pageable.append('size', size);
         return this.httpClient
             .get<ResponsePageable>(`${config.apiUrl}/${this.endPoint}`, {
-                headers: httpHeader,
+                headers: config.httpHeaders,
                 params: pageable,
             })
             .pipe(
@@ -58,11 +57,10 @@ export class PacienteService {
     }
 
     pesquisar(key = '') {
-        const httpHeader = new HttpHeaders();
         let search = new HttpParams();
         search = search.append('key', key);
         return this.httpClient.get(`${config.apiUrl}/${this.endPoint}/search`, {
-            headers: httpHeader,
+            headers: config.httpHeaders,
             params: search,
         });
     }
