@@ -3,7 +3,7 @@ import { environment } from 'environments/environment';
 
 export const httpHeaders: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + localStorage.getItem('Authorization')
+    'Authorization': 'Bearer ' + localStorage.getItem('auth')
   });
 
 export const config = {

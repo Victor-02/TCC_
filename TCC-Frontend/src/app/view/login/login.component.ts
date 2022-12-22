@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     actionLogin() {
         this.loginService.login(this.loginForm.value).subscribe({
             next: (v) => {
-                localStorage.setItem('Authorization', v.token);
+                localStorage.setItem('auth', v.token);
                 this.router.navigate(['/home']);
             },
             error: () => {
