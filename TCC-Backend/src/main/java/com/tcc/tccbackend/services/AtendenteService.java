@@ -5,8 +5,6 @@ import com.tcc.tccbackend.models.Atendente;
 import com.tcc.tccbackend.repository.AtendenteRepository;
 import com.tcc.tccbackend.security.Token;
 import com.tcc.tccbackend.security.TokenUtil;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,13 +30,13 @@ public class AtendenteService {
         }
     }
 
-    public boolean validaSenha (AtendenteDTO atendente){
-        return this.encoder.matches(atendente.getSenha(), repository.getById(atendente.getId()).getSenha());
+    public boolean validaSenha(AtendenteDTO atendente) {
+        return this.encoder.matches(atendente.getSenha(), repository.findByEmail(atendente.getEmail()).getSenha());
     }
 
     public Token gerarToken(AtendenteDTO atendente) {
         Atendente user = repository.findByUsernameOrEmail(atendente.getUsername(), atendente.getEmail());
         boolean valid = encoder.matches(atendente.getSenha(), user.getSenha());
-            return (valid ? new Token(TokenUtil.createToken(user)) : null);
+        return (valid ? new Token(TokenUtil.createToken(user)) : null);
     }
 }

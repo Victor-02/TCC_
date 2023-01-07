@@ -1,5 +1,5 @@
+package com.tcc.tccbackend.TestController;
 /*
-package com.example.tccbackend.TestController;
 
 
 import com.example.tccbackend.controllers.PacienteController;
@@ -99,3 +99,54 @@ public class PacienteTest {
                 .body("placaOriginal", is("FF4CCS1"));
     }
 }*/
+
+
+import io.restassured.http.ContentType;
+import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+
+import static io.restassured.RestAssured.given;
+
+public class PacienteTest extends BaseTest {
+
+    public String getJWT(){
+        return given()
+                .body("{\n" +
+                        "\t\"email\": \"paula@gmail.com\",\n" +
+                        "\t\"senha\": \"senha\"\n" +
+                        "}")
+                .contentType(ContentType.JSON)
+                .when()
+                .post("/user/login")
+                .then()
+                .extract()
+                .path("token");
+    }
+
+    @Test
+    @DisplayName("Retorna erro quando busca todos os pacientes sem autenticação")
+    public void t1() {
+        given()
+                .auth().none()
+                .accept(ContentType.JSON)
+                .when()
+                .get("/pacientes")
+                .then()
+                .statusCode(403);
+    }
+
+    @Test
+    @DisplayName("Retorna sucesso quando busca todos os pacientes")
+    public void t2() {
+        given()
+                .header("Authorization", getJWT())
+                .accept(ContentType.JSON)
+                .when()
+                .get("/pacientes")
+                .then()
+                .statusCode(200);
+    }
+
+
+}

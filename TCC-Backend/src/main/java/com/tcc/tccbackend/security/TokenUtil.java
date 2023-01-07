@@ -11,7 +11,6 @@ import org.springframework.security.core.Authentication;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Key;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 
@@ -24,30 +23,29 @@ public class TokenUtil {
 
     public static String createToken(Atendente atendente) {
         Key secretKey = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
-        String token = Jwts
-                .builder()
-                    .setSubject(atendente.getUsername())
-                    .setIssuer(EMISSOR)
-                    .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
-                    .signWith(secretKey, SignatureAlgorithm.HS256)
-                .compact();
 
-        return PREFIX + token;
+        return Jwts
+                .builder()
+                .setSubject(atendente.getUsername())
+                .setIssuer(EMISSOR)
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
+                .signWith(secretKey, SignatureAlgorithm.HS256)
+                .compact();
     }
 
-    private static boolean isExpirationValid(Date expiration){
+    private static boolean isExpirationValid(Date expiration) {
         return expiration.after(new Date(System.currentTimeMillis()));
     }
 
-    private static boolean isEmissorValid(String emissor){
+    private static boolean isEmissorValid(String emissor) {
         return emissor.equals(EMISSOR);
     }
 
-    private static boolean isSubjectValid(String username){
+    private static boolean isSubjectValid(String username) {
         return username != null && username.length() > 0;
     }
 
-    public static Authentication validate (HttpServletRequest request) {
+    public static Authentication validate(HttpServletRequest request) {
         String token = request.getHeader(HEADER);
         token = token.replace(PREFIX, "");
         Jws<Claims> jwsClaims = Jwts.parserBuilder().setSigningKey(SECRET_KEY.getBytes())

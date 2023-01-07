@@ -12,8 +12,6 @@ public class AtendenteDTO {
 
     private Integer id;
 
-    @NotBlank
-    @Size(min=3, message="Nome Inválido (mínimo 3 caracteres)")
     private String username;
 
     @NotBlank
@@ -24,6 +22,5 @@ public class AtendenteDTO {
     @Size(min=5, max=15 , message="Senha Inválido (5-15 Caracteres)")
     private String senha;
 
-    @NotBlank
     private String telefone;
 }
