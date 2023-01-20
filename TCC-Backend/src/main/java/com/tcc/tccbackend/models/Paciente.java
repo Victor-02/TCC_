@@ -1,22 +1,20 @@
 package com.tcc.tccbackend.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.hibernate.validator.constraints.br.CPF;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 @Data
 @Entity
 @Table(name = "pacientes")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Paciente implements Serializable {
 
     @Id
@@ -39,7 +37,7 @@ public class Paciente implements Serializable {
     @Column
     private Date dataNascimento;
 
-    @OneToMany(mappedBy="paciente", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "paciente", fetch = FetchType.EAGER)
     @JsonManagedReference(value = "paciente_id")
     private List<Agendamento> agendamentos;
 }
