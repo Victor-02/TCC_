@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CookieService } from 'ngx-cookie-service';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,7 +32,7 @@ import { ServicoComponent } from './view/servico/servico.component';
         MainNavComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatImportsModule, HttpClientModule],
-    providers: [],
+    providers: [CookieService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

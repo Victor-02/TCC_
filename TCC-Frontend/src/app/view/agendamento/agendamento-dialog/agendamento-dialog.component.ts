@@ -60,7 +60,7 @@ export class AgendamentoDialogComponent implements OnInit {
     deletar() {
         this.service.delete(this.agendamento).subscribe({
             next: () => this.router.navigateByUrl('/agendamentos'),
-            error: () => this.onErrorDelete(),
+            error: (error) => this.onErrorDelete(error),
         });
     }
 
@@ -73,8 +73,8 @@ export class AgendamentoDialogComponent implements OnInit {
     private onErrorAgendamento() {
         this.snackBar.open('Erro ao salvar agendamento!', '', { duration: 3500 });
     }
-    private onErrorDelete() {
-        this.snackBar.open('Erro ao deletar agendamento!', '', { duration: 3500 });
+    private onErrorDelete(error: string) {
+        this.snackBar.open(error, '', { duration: 3500 });
     }
 
     private preencheDados() {
