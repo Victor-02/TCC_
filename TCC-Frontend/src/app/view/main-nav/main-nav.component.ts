@@ -8,7 +8,7 @@ import { map, Observable, shareReplay } from 'rxjs';
     styleUrls: ['./main-nav.component.css'],
 })
 export class MainNavComponent implements OnInit {
-    title = 'TCC';
+    title = 'DoctorDesk';
 
     isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
         map((result) => result.matches),

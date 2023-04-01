@@ -17,6 +17,7 @@ import { ProfissionalDialogComponent } from './view/profissional/profissional-di
 import { ProfissionalComponent } from './view/profissional/profissional.component';
 import { ServicoDialogComponent } from './view/servico/servico-dialog/servico-dialog.component';
 import { ServicoComponent } from './view/servico/servico.component';
+import { BreadCrumbComponent } from './shared/breadCrumb/bread-crumb/bread-crumb.component';
 
 @NgModule({
     declarations: [
@@ -30,6 +31,7 @@ import { ServicoComponent } from './view/servico/servico.component';
         ServicoDialogComponent,
         ProfissionalDialogComponent,
         MainNavComponent,
+        BreadCrumbComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatImportsModule, HttpClientModule],
     providers: [CookieService],
