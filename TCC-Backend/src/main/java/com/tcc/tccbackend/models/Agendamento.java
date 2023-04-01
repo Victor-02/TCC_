@@ -1,6 +1,7 @@
 package com.tcc.tccbackend.models;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +31,7 @@ public class Agendamento implements Serializable {
 
     @Column
     @NotBlank
-    private String data;
+    private Date data;
 
     @ManyToOne
     @JoinColumn(name = "servico_id")

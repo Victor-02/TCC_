@@ -13,32 +13,36 @@ export class AgendamentoService {
     constructor(private httpClient: HttpClient) {}
 
     listarAgenda(page = 0, size = 10): Observable<ResponsePageable> {
-        const httpHeader = new HttpHeaders();
         let pageable = new HttpParams();
         pageable = pageable.append('page', page);
         pageable = pageable.append('size', size);
         return this.httpClient.get<ResponsePageable>(`${config.apiUrl}/${this.endPoint}`, {
-            headers: httpHeader,
+            headers: config.httpHeaders,
             params: pageable,
         });
     }
 
     salvar(agendamento: Agendamento): Observable<Agendamento> {
-        const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
         return this.httpClient.post<Agendamento>(`${config.apiUrl}/${this.endPoint}`, agendamento, {
-            headers: headers,
+            headers: config.httpHeaders,
         });
     }
 
     pesquisarPorId(id: number): Observable<Agendamento> {
-        return this.httpClient.get<Agendamento>(`${config.apiUrl}/${this.endPoint}/${id}`);
+        return this.httpClient.get<Agendamento>(`${config.apiUrl}/${this.endPoint}/${id}`, {
+            headers: config.httpHeaders,
+        });
     }
 
     atualizar(agendamento: Agendamento, id: number): Observable<Agendamento> {
-        return this.httpClient.put<Agendamento>(`${config.apiUrl}/${this.endPoint}/${id}`, agendamento);
+        return this.httpClient.put<Agendamento>(`${config.apiUrl}/${this.endPoint}/${id}`, agendamento, {
+            headers: config.httpHeaders,
+        });
     }
 
     delete(agendamento: Agendamento): Observable<{}> {
-        return this.httpClient.delete<Agendamento>(`${config.apiUrl}/${this.endPoint}/${agendamento.id}`);
+        return this.httpClient.delete<Agendamento>(`${config.apiUrl}/${this.endPoint}/${agendamento.id}`, {
+            headers: config.httpHeaders,
+        });
     }
 }

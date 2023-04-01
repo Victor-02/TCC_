@@ -41,6 +41,7 @@ public class AgendamentoController {
     @GetMapping
     public ResponseEntity<?> getAll(Pageable page) {
         Page<AgendamentoDTO> agendamentos = service.getAll(page);
+        System.out.println(agendamentos.getTotalElements());
         return ResponseEntity.ok().body(agendamentos);
     }
 

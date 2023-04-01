@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication(scanBasePackages = "com.tcc.tccbackend.*")
-@EnableJpaRepositories(value = "com.tcc.tccbackend.repository")
-@EntityScan(value = "com.tcc.tccbackend.models")
-@RestController
 @EnableSwagger2
 public class TccBackendApplication {
 

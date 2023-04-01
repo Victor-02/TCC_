@@ -18,23 +18,23 @@ export class ProfissionalService {
         pageable = pageable.append('page', page);
         pageable = pageable.append('size', size);
         return this.httpClient.get<ResponsePageable>(`${config.apiUrl}/${this.endPoint}`, {
-            headers: httpHeader,
+            headers: config.httpHeaders,
             params: pageable,
         });
     }
 
     salvar(profissional: Profissional): Observable<Profissional> {
-        return this.httpClient.post<Profissional>(`${config.apiUrl}/${this.endPoint}`, profissional);
+        return this.httpClient.post<Profissional>(`${config.apiUrl}/${this.endPoint}`, profissional, {headers: config.httpHeaders,});
     }
 
     pesquisarPorId(id: number): Observable<Profissional> {
-        return this.httpClient.get<Profissional>(`${config.apiUrl}/${this.endPoint}/${id}`);
+        return this.httpClient.get<Profissional>(`${config.apiUrl}/${this.endPoint}/${id}`, {headers: config.httpHeaders,});
     }
 
     delete(profissional: Profissional): Observable<{}> {
-        return this.httpClient.delete<Profissional>(`${config.apiUrl}/${this.endPoint}/${profissional.id}`);
+        return this.httpClient.delete<Profissional>(`${config.apiUrl}/${this.endPoint}/${profissional.id}`, {headers: config.httpHeaders,});
     }
     buscarTodos(): Observable<Profissional[]> {
-        return this.httpClient.get<Profissional[]>(`${config.apiUrl}/${this.endPoint}/all`);
+        return this.httpClient.get<Profissional[]>(`${config.apiUrl}/${this.endPoint}/all`, {headers: config.httpHeaders,});
     }
 }

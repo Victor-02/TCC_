@@ -17,7 +17,7 @@ export class ImportacaoService {
         pageable = pageable.append('page', page);
         pageable = pageable.append('size', size);
         return this.http.get<ResponsePageable>(`${config.apiUrl}/${this.endPoint}`, {
-            headers: httpHeader,
+            headers: config.httpHeaders,
             params: pageable,
         });
     }
@@ -25,6 +25,9 @@ export class ImportacaoService {
     uploadArquivo(arquivo: File): Observable<any> {
         const data = new FormData();
         data.append('file', arquivo);
-        return this.http.post(`${config.apiUrl}/${this.endPoint}/upload`, data, { responseType: 'text' });
+        return this.http.post(`${config.apiUrl}/${this.endPoint}/upload`, data, {
+            responseType: 'text',
+            headers: config.httpHeaders,
+        });
     }
 }

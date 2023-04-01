@@ -12,7 +12,6 @@ export class LoginService {
         const httpHeaders: HttpHeaders = new HttpHeaders({
             'Content-Type': 'application/json',
         });
-        console.log(data);
         return this.httpClient.post<any>(`${config.apiUrl}/user/login`, data, { headers: httpHeaders });
     }
 }

@@ -32,4 +32,13 @@ public class AppExceptionHandler {
         err.setMensagem("Um ou mais Pacientes já existem!");
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(err);
     }
+    @ExceptionHandler(HorarioIgualException.class)
+    public ResponseEntity<ErrorMessage> HorarioIgual(HorarioIgualException e, HttpServletRequest requisicao) {
+        ErrorMessage err = new ErrorMessage();
+        err.setDataAtual(Instant.now());
+        err.setStatus(HttpStatus.BAD_GATEWAY.value());
+        err.setErro(HttpStatus.BAD_GATEWAY.toString());
+        err.setMensagem("Horário já está ocupado!");
+        return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(err);
+    }
 }

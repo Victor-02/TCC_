@@ -13,28 +13,31 @@ export class ServicoService {
     constructor(private httpClient: HttpClient) {}
 
     listarServicos(page = 0, size = 10): Observable<ResponsePageable> {
-        const httpHeader = new HttpHeaders();
         let pageable = new HttpParams();
         pageable = pageable.append('page', page);
         pageable = pageable.append('size', size);
         return this.httpClient.get<ResponsePageable>(`${config.apiUrl}/${this.endPoint}`, {
-            headers: httpHeader,
+            headers: config.httpHeaders,
             params: pageable,
         });
     }
 
     salvar(servico: Servico): Observable<Servico> {
-        return this.httpClient.post<Servico>(`${config.apiUrl}/${this.endPoint}`, servico);
+        return this.httpClient.post<Servico>(`${config.apiUrl}/${this.endPoint}`, servico, {
+            headers: config.httpHeaders,
+        });
     }
 
     pesquisarPorId(id: number): Observable<Servico> {
-        return this.httpClient.get<Servico>(`${config.apiUrl}/${this.endPoint}/${id}`);
+        return this.httpClient.get<Servico>(`${config.apiUrl}/${this.endPoint}/${id}`, { headers: config.httpHeaders });
     }
 
     delete(servico: Servico): Observable<{}> {
-        return this.httpClient.delete<Servico>(`${config.apiUrl}/${this.endPoint}/${servico.id}`);
+        return this.httpClient.delete<Servico>(`${config.apiUrl}/${this.endPoint}/${servico.id}`, {
+            headers: config.httpHeaders,
+        });
     }
     buscarTodos(): Observable<Servico[]> {
-        return this.httpClient.get<Servico[]>(`${config.apiUrl}/${this.endPoint}/all`);
+        return this.httpClient.get<Servico[]>(`${config.apiUrl}/${this.endPoint}/all`, { headers: config.httpHeaders });
     }
 }

@@ -66,13 +66,18 @@ export class PacienteService {
     }
 
     salvar(paciente: Paciente): Observable<Paciente> {
-        if (paciente != null) return this.httpClient.post<Paciente>(`${config.apiUrl}/${this.endPoint}`, paciente);
+        if (paciente != null)
+            return this.httpClient.post<Paciente>(`${config.apiUrl}/${this.endPoint}`, paciente, {
+                headers: config.httpHeaders,
+            });
         else throw new Error('Erro ao criar paciente');
     }
 
     pesquisarPorId(id: number): Observable<Paciente> {
         try {
-            return this.httpClient.get<Paciente>(`${config.apiUrl}/${this.endPoint}/${id}`);
+            return this.httpClient.get<Paciente>(`${config.apiUrl}/${this.endPoint}/${id}`, {
+                headers: config.httpHeaders,
+            });
         } catch (error) {
             throw new Error('Erro ao encontrar paciente');
         }
@@ -82,17 +87,23 @@ export class PacienteService {
         if (paciente === undefined || paciente === null) throw new Error('Erro ao Atualizar paciente');
 
         try {
-            return this.httpClient.put<Paciente>(`${config.apiUrl}/${this.endPoint}/${id}`, paciente);
+            return this.httpClient.put<Paciente>(`${config.apiUrl}/${this.endPoint}/${id}`, paciente, {
+                headers: config.httpHeaders,
+            });
         } catch (error) {
             throw new Error('Erro ao encontrar paciente');
         }
     }
 
     delete(paciente: Paciente): Observable<{}> {
-        return this.httpClient.delete<Paciente>(`${config.apiUrl}/${this.endPoint}/${paciente.id}`);
+        return this.httpClient.delete<Paciente>(`${config.apiUrl}/${this.endPoint}/${paciente.id}`, {
+            headers: config.httpHeaders,
+        });
     }
 
     buscarTodos(): Observable<Paciente[]> {
-        return this.httpClient.get<Paciente[]>(`${config.apiUrl}/${this.endPoint}/all`);
+        return this.httpClient.get<Paciente[]>(`${config.apiUrl}/${this.endPoint}/all`, {
+            headers: config.httpHeaders,
+        });
     }
 }
