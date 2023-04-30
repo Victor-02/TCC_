@@ -1,5 +1,5 @@
 <div class="container">
-    <mat-toolbar>Planilhas importadas</mat-toolbar>
+    <h2 style="margin-bottom: 30px">Planilhas importadas</h2>
 
     <div class="input-group py-3">
         <input type="file" class="form-control" aria-label="Upload" (change)="onChange($event)" />
@@ -32,6 +32,8 @@
     </div>
     <app-paginator [options]="paginator" (onGetData)="listarImports()"> </app-paginator>
     <div class="acoes">
-        <button class="btn btn-primary m-2" routerLink="/pacientes">Voltar</button>
+        <button class="btn btn-primary m-2" routerLink="/pacientes" style="background-color: #4934cc; color: #fff">
+            Voltar
+        </button>
     </div>
 </div>

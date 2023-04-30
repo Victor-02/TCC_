@@ -1,13 +1,20 @@
 <div class="container">
-    <mat-toolbar>Pacientes</mat-toolbar>
+    <h2 style="margin-bottom: 30px">Lista de Pacientes</h2>
 
     <div class="acoes mb-2">
-        <form [formGroup]="searchForm" (ngSubmit)="(searchForm.valid)" class="pesquisa">
+        <form [formGroup]="searchForm" (ngSubmit)="(searchForm.valid)">
             <mat-form-field>
                 <input matInput placeholder="Pesquisar por CPF" formControlName="search" autocomplete="off" />
             </mat-form-field>
-            <button mat-raised-button class="btn-primary" (click)="search(searchForm.value.search)">Pesquisar</button>
-            <button mat-raised-button class="btn-secondary" (click)="resetaPesquisa()">Limpar</button>
+            <button
+                mat-raised-button
+                style="background-color: #4934cc; color: #fff"
+                (click)="search(searchForm.value.search)">
+                Pesquisar
+            </button>
+            <button mat-raised-button style="background-color: #6559b8; color: #fff" (click)="resetaPesquisa()">
+                Limpar
+            </button>
         </form>
     </div>
 
@@ -51,7 +58,15 @@
     </div>
     <app-paginator [options]="paginator" (onGetData)="listarPages()"></app-paginator>
     <div class="acoes mt-3">
-        <button mat-raised-button class="btn btn-primary m-3" routerLink="cadastrar">Cadastrar</button>
-        <button mat-raised-button class="btn btn-secondary m-2" routerLink="importacao">Importar Arquivos</button>
+        <button mat-raised-button class="btn m-3" style="background-color: #4934cc; color: #fff" routerLink="cadastrar">
+            Cadastrar
+        </button>
+        <button
+            mat-raised-button
+            class="btn m-2"
+            style="background-color: #6559b8; color: #fff"
+            routerLink="importacao">
+            Importar Arquivos
+        </button>
     </div>
 </div>

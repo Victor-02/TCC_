@@ -17,3 +17,7 @@ table {
     margin-left: 45%;
     margin-top: 10%;
 }
+
+.container {
+    min-height: 800px;
+}

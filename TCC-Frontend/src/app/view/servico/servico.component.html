@@ -1,5 +1,5 @@
 <div class="container">
-    <mat-toolbar>Serviços</mat-toolbar>
+    <h2 style="margin-bottom: 30px">Lista de Serviços</h2>
 
     <div *ngIf="loading" class="spinner py-5 d-flex justify-content-start">
         <div class="spinner-border" style="width: 15rem; height: 15rem" role="status">
@@ -28,6 +28,8 @@
         </table>
     </div>
     <div class="acoes">
-        <button class="btn btn-primary mt-4" (click)="openDialog()">Cadastrar serviço</button>
+        <button class="btn mt-4" style="background-color: #4934cc; color: #fff" (click)="openDialog()">
+            Cadastrar serviço
+        </button>
     </div>
 </div>

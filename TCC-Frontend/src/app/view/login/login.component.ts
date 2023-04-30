@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
         this.loginService.login(this.loginForm.value).subscribe({
             next: (v) => {
                 sessionStorage.setItem('auth', v.token);
-                this.router.navigate(['/home']);
+                sessionStorage.setItem('id', v.id);
+                this.router.navigate(['/pacientes']);
             },
             error: () => {
                 this.onErrorLogin();

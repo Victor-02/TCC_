@@ -43,4 +43,10 @@ public class AtendenteController {
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Atendente> getUser(@PathVariable Integer id) {
+        Atendente atendente = atendenteService.findById(id);
+        return (atendente != null ? ResponseEntity.ok().body(atendente) : new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 }

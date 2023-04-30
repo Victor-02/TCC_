@@ -37,6 +37,10 @@ public class AtendenteService {
     public Token gerarToken(AtendenteDTO atendente) {
         Atendente user = repository.findByUsernameOrEmail(atendente.getUsername(), atendente.getEmail());
         boolean valid = encoder.matches(atendente.getSenha(), user.getSenha());
-        return (valid ? new Token(TokenUtil.createToken(user)) : null);
+        return (valid ? new Token(TokenUtil.createToken(user), user.getId()) : null);
+    }
+
+    public Atendente findById(Integer id) {
+        return repository.findById(id).orElse(null);
     }
 }

@@ -1,5 +1,5 @@
 <div class="container">
-    <mat-toolbar>Profissionais</mat-toolbar>
+    <h2 style="margin-bottom: 30px">Lista de Profissionais</h2>
 
     <div *ngIf="loading" class="spinner py-5 d-flex justify-content-start">
         <div class="spinner-border" style="width: 15rem; height: 15rem" role="status">
@@ -35,8 +35,9 @@
             <tr mat-row *matRowDef="let row; columns: colunas"></tr>
         </table>
     </div>
-    <!-- <app-paginator [options]="paginator" (onGetData)="listarAgenda()"> </app-paginator> -->
     <div class="acoes">
-        <button class="btn btn-primary mt-4" (click)="openDialog()">Cadastrar Profissional</button>
+        <button class="btn mt-4" style="background-color: #4934cc; color: #fff" (click)="openDialog()">
+            Cadastrar Profissional
+        </button>
     </div>
 </div>
