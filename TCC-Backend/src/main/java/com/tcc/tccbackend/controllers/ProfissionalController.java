@@ -24,26 +24,26 @@ public class ProfissionalController {
     }
 
     @PostMapping
-    public ResponseEntity<?> Insert(@Valid @RequestBody Profissional profissional) {
+    public ResponseEntity<Profissional> insert(@Valid @RequestBody Profissional profissional) {
         profissional = service.save(profissional);
         logger.info("Efetuando insercão de Profissional");
         return ResponseEntity.status(HttpStatus.CREATED).body(profissional);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getByID(@PathVariable Integer id) {
+    public ResponseEntity<Profissional> getByID(@PathVariable Integer id) {
         Profissional profissional = service.findById(id);
         return ResponseEntity.ok().body(profissional);
     }
 
     @GetMapping
-    public ResponseEntity<?> getAllPage(Pageable page) {
+    public ResponseEntity<Page<Profissional>> getAllPage(Pageable page) {
         Page<Profissional> profissionais = service.getAllPage(page);
         return ResponseEntity.ok().body(profissionais);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> getAll() {
+    public ResponseEntity<List<Profissional>> getAll() {
         List<Profissional> profissionais = service.getAll();
         return ResponseEntity.ok().body(profissionais);
     }

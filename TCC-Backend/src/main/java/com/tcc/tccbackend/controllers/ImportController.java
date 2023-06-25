@@ -55,14 +55,14 @@ public class ImportController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getAll(Pageable page) {
+    public ResponseEntity<Page<Import>> getAll(Pageable page) {
         Page<Import> imports = importService.getAll(page);
         return ResponseEntity.ok().body(imports);
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable Integer id) {
+    public ResponseEntity<Import> findById(@PathVariable Integer id) {
         Import importacao = importService.findById(id);
         return ResponseEntity.ok().body(importacao);
     }

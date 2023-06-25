@@ -1,91 +1,120 @@
 package com.tcc.tccbackend.TestController;
 
+import com.tcc.tccbackend.builder.PacienteDTOBuilder;
 import com.tcc.tccbackend.controllers.PacienteController;
-import com.tcc.tccbackend.models.Paciente;
-import com.tcc.tccbackend.repository.PacienteRepository;
+import com.tcc.tccbackend.dtos.PacienteDTO;
 import com.tcc.tccbackend.services.PacienteService;
-import io.restassured.http.ContentType;
-import io.restassured.module.mockmvc.RestAssuredMockMvc;
-import org.hamcrest.Matchers;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.modelmapper.ModelMapper;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.Date;
-import java.util.List;
+import javax.persistence.EntityNotFoundException;
 
-import static io.restassured.RestAssured.given;
+import java.util.ArrayList;
 
-@SpringBootTest
-@WebMvcTest(PacienteController.class)
+import static com.tcc.tccbackend.util.JsonConvertionUtils.asJsonString;
+import static org.hamcrest.core.Is.is;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@ExtendWith(MockitoExtension.class)
 public class PacienteTest extends BaseTest {
 
     @Autowired
     private MockMvc mockMvc;
-    @Before
+
+    @Mock
+    private PacienteService pacienteService;
+
+    @InjectMocks
+    private PacienteController pacienteController;
+
+    @BeforeEach
     public void setup() {
-        RestAssuredMockMvc.mockMvc(mockMvc);
+        mockMvc = MockMvcBuilders.standaloneSetup(pacienteController).build();
     }
 
     @Test
     @DisplayName("Retorna erro quando busca todos os pacientes sem autenticação")
-    public void t1() {
+    public void t1() throws Exception {
 
-        given()
-                .auth().none()
-                .accept(ContentType.JSON)
-                .when()
-                .get("/pacientes")
-                .then()
-                .statusCode(403);
+        mockMvc.perform(post("/pacientes")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isUnauthorized());
     }
 
     @Test
     @DisplayName("Retorna sucesso quando busca todos os pacientes")
-    public void t2() {
-        given()
-                .header("Authorization", getJWT())
-                .accept(ContentType.JSON).when()
-                .get("/pacientes")
-                .then()
-                .statusCode(200)
-                .body(Matchers.notNullValue());
+    public void t2() throws Exception {
+
+        when(pacienteService.getAll()).thenReturn(new ArrayList<>());
+
+        mockMvc.perform(get("/pacientes")
+                        .header("Authorization", getJWT())
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
     @Test
     @DisplayName("Retorna erro quando busca um paciente que não existe")
-    public void t3() {
-        given()
-                .header("Authorization", getJWT())
-                .accept(ContentType.JSON)
-                .when()
-                .get("/pacientes/9999")
-                .then()
-                .statusCode(404)
-                .body("mensagem", Matchers.equalTo("Paciente não encontrado"));
+    public void t3() throws Exception {
+        PacienteDTO pacienteDTO = PacienteDTOBuilder.builder().build().toPacienteDTO();
+
+        when(pacienteService.findById(pacienteDTO.getId())).thenThrow(EntityNotFoundException.class);
+
+        mockMvc.perform(get("/pacientes" + pacienteDTO.getId())
+                        .header("Authorization", getJWT())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(pacienteDTO)))
+                .andExpect(status().isNotFound());
     }
 
-    @Test
-    @DisplayName("Retorna sucesso quando busca um paciente ")
-    public void t4() {
-            given()
-                .header("Authorization", getJWT())
-                .accept(ContentType.JSON)
-                .when()
-                .get("/pacientes/99999991")
-                .then().statusCode(200)
-                    .body("nome", Matchers.equalTo("test"))
-                    .body("email", Matchers.equalTo("test@test.com"));
+        @Test
+        @DisplayName("Retorna sucesso quando busca um paciente ")
+        public void t4 () throws Exception {
+            PacienteDTO pacienteDTO = PacienteDTOBuilder.builder().build().toPacienteDTO();
+
+            when(pacienteService.findById(pacienteDTO.getId())).thenReturn(pacienteDTO);
+
+            mockMvc.perform(get("/pacientes" + pacienteDTO.getId())
+                            .header("Authorization", getJWT())
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(asJsonString(pacienteDTO)))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.nome", is(pacienteDTO.getNome())))
+                    .andExpect(jsonPath("$.email", is(pacienteDTO.getEmail())))
+                    .andExpect(jsonPath("$.cpf", is(pacienteDTO.getCpf())))
+                    .andExpect(jsonPath("$.telefone", is(pacienteDTO.getTelefone())))
+                    .andExpect(jsonPath("$.dataNascimento", is(pacienteDTO.getDataNascimento())));
+        }
+
+        @Test
+        @DisplayName("Retorna sucesso quando cadastrar um paciente")
+        void t5 () throws Exception {
+            PacienteDTO pacienteDTO = PacienteDTOBuilder.builder().build().toPacienteDTO();
+
+            when(pacienteService.save(pacienteDTO)).thenReturn(pacienteDTO);
+
+            mockMvc.perform(post("/pacientes")
+                            .header("Authorization", getJWT())
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(asJsonString(pacienteDTO)))
+                    .andExpect(status().isCreated())
+                    .andExpect(jsonPath("$.nome", is(pacienteDTO.getNome())))
+                    .andExpect(jsonPath("$.email", is(pacienteDTO.getEmail())))
+                    .andExpect(jsonPath("$.cpf", is(pacienteDTO.getCpf())))
+                    .andExpect(jsonPath("$.telefone", is(pacienteDTO.getTelefone())))
+                    .andExpect(jsonPath("$.dataNascimento", is(pacienteDTO.getDataNascimento())));
+        }
     }
-}

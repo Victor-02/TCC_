@@ -14,7 +14,7 @@ import java.time.Instant;
 public class AppExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<ErrorMessage> entityNotFound(EntityNotFoundException e, HttpServletRequest requisicao) {
+    public ResponseEntity<ErrorMessage> entityNotFoundException(EntityNotFoundException e, HttpServletRequest requisicao) {
         ErrorMessage err = new ErrorMessage();
         err.setDataAtual(Instant.now());
         err.setStatus(HttpStatus.NOT_FOUND.value());
@@ -24,7 +24,7 @@ public class AppExceptionHandler {
     }
 
     @ExceptionHandler(EntityExistsException.class)
-    public ResponseEntity<ErrorMessage> entityExists(EntityExistsException e, HttpServletRequest requisicao) {
+    public ResponseEntity<ErrorMessage> entityExistsException(EntityExistsException e, HttpServletRequest requisicao) {
         ErrorMessage err = new ErrorMessage();
         err.setDataAtual(Instant.now());
         err.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
@@ -33,7 +33,7 @@ public class AppExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(err);
     }
     @ExceptionHandler(HorarioIgualException.class)
-    public ResponseEntity<ErrorMessage> HorarioIgual(HorarioIgualException e, HttpServletRequest requisicao) {
+    public ResponseEntity<ErrorMessage> HorarioIgualException(HorarioIgualException e, HttpServletRequest requisicao) {
         ErrorMessage err = new ErrorMessage();
         err.setDataAtual(Instant.now());
         err.setStatus(HttpStatus.BAD_GATEWAY.value());
