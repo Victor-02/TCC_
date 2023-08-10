@@ -7,6 +7,7 @@ import { Paginator } from 'app/shared/paginator/paginator.class';
 
 import { Paciente } from '../../../model/paciente';
 import { PacienteService } from '../../../service/paciente.service';
+import { delay } from 'rxjs';
 
 @Component({
     selector: 'app-paciente',

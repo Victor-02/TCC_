@@ -32,7 +32,6 @@ export class PacienteService {
                         this.errorMsg = `Error: ${error.error.message}`;
                     } else {
                         this.errorMsg = this.getServerErrorMessage(error);
-                        console.log(JSON.stringify(error));
                     }
                     return throwError(this.errorMsg);
                 })

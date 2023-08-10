@@ -49,7 +49,6 @@ export class AgendamentoDialogComponent implements OnInit {
     salvar() {
         let newDate: moment.Moment = moment.utc(this.fGroup.value.data).local();
         this.fGroup.value.data = newDate.format('DD-MM-YYYY') + 'T' + this.fGroup.value.horario;
-        console.log(this.fGroup.value.data);
 
         this.service.salvar(this.fGroup.value).subscribe({
             next: () => window.location.reload(),

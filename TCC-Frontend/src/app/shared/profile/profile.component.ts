@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'app/model/user';
 import { UserService } from 'app/service/user.service';
+import { delay } from 'rxjs';
 
 @Component({
     selector: 'app-profile',
@@ -18,6 +19,7 @@ export class ProfileComponent implements OnInit {
     }
 
     getUser() {
+        delay(1000);
         this.service.getUser(this.id).subscribe({
             next: (data: any) => {
                 this.user = data;
@@ -28,5 +30,9 @@ export class ProfileComponent implements OnInit {
     logout() {
         sessionStorage.clear();
         window.location.reload();
+    }
+
+    delay(ms: number) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
     }
 }
