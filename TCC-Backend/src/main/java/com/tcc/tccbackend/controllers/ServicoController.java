@@ -18,39 +18,39 @@ import java.util.List;
 public class ServicoController {
 
     final ServicoService service;
-    private final Logger logger = LoggerFactory.getLogger(ImportController.class);
+    private final Logger logger = LoggerFactory.getLogger(ServicoController.class);
 
     public ServicoController(ServicoService service) {
         this.service = service;
     }
 
     @PostMapping
-    public ResponseEntity<?> Insert(@Valid @RequestBody Servico servico) {
+    public ResponseEntity<Servico> insert(@Valid @RequestBody Servico servico) {
         servico = service.save(servico);
         logger.info("Efetuando insercão de Servico");
         return ResponseEntity.status(HttpStatus.CREATED).body(servico);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getByID(@PathVariable Integer id) {
+    public ResponseEntity<Servico> getByID(@PathVariable Integer id) {
         Servico servico = service.findById(id);
         return ResponseEntity.ok().body(servico);
     }
 
     @GetMapping
-    public ResponseEntity<?> getAllPage(Pageable page) {
+    public ResponseEntity<Page<Servico>> getAllPage(Pageable page) {
         Page<Servico> servicos = service.getAllPage(page);
         return ResponseEntity.ok().body(servicos);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> getAll() {
+    public ResponseEntity<List<Servico>> getAll() {
         List<Servico> servicos = service.getAll();
         return ResponseEntity.ok().body(servicos);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable Integer id) {
+    public ResponseEntity<HttpStatus> delete(@PathVariable Integer id) {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }

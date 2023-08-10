@@ -23,7 +23,7 @@ public class PacienteController {
 
     final PacienteService service;
     final ModelMapper mapper;
-    private final Logger logger = LoggerFactory.getLogger(ImportController.class);
+    private final Logger logger = LoggerFactory.getLogger(PacienteController.class);
 
     public PacienteController(PacienteService service, ModelMapper mapper) {
         this.service = service;
@@ -31,35 +31,34 @@ public class PacienteController {
     }
 
     @PostMapping
-    public ResponseEntity<?> Insert(@Valid @RequestBody Paciente paciente) {
-        paciente = service.save(paciente);
+    public ResponseEntity<PacienteDTO> insert(@Valid @RequestBody PacienteDTO pacienteDTO) {
+        PacienteDTO pacienteDto = service.save(pacienteDTO);
         logger.info("Efetuando insercao de paciente");
-        return ResponseEntity.status(HttpStatus.CREATED).body(paciente);
+        return ResponseEntity.status(HttpStatus.CREATED).body(pacienteDto);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getByID(@PathVariable Integer id) {
-        Paciente paciente = service.findById(id);
-        PacienteDTO pacienteDTO = this.toPacienteDTO(paciente);
-        logger.info("Efetuando busca por ID do paciente: %d", paciente.getId());
+    public ResponseEntity<PacienteDTO> getByID(@PathVariable Integer id) {
+        PacienteDTO pacienteDTO = service.findById(id);
+        logger.info("Efetuando busca por ID do paciente: " + pacienteDTO.getId());
         return ResponseEntity.ok().body(pacienteDTO);
     }
 
     @GetMapping
-    public ResponseEntity<?> getAllPage(Pageable page) {
+    public ResponseEntity<Page<PacienteDTO>> getAllPage(Pageable page) {
         Page<PacienteDTO> pacientes = service.getAllPage(page);
         return ResponseEntity.ok().body(pacientes);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> getAll() {
+    public ResponseEntity<List<Paciente>> getAll() {
         List<Paciente> profissionais = service.getAll();
         return ResponseEntity.ok().body(profissionais);
     }
 
     @GetMapping("/search")
     public ResponseEntity<List<Paciente>> search(@RequestParam("key") String query) {
-        logger.info("Efetuando busca por CPF do paciente: %d", query);
+        logger.info("Efetuando busca por CPF do paciente: " + query);
         return ResponseEntity.ok(service.searchPacientes(query));
     }
 
@@ -74,10 +73,4 @@ public class PacienteController {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
-    private PacienteDTO toPacienteDTO(Paciente paciente) {
-        return mapper.map(paciente, PacienteDTO.class);
-    }
-
-
 }

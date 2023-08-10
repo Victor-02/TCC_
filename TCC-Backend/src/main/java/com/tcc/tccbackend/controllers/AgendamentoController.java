@@ -26,22 +26,21 @@ public class AgendamentoController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> Insert(@Valid @RequestBody Agendamento agendamento) {
+    public ResponseEntity<Agendamento> insert(@Valid @RequestBody Agendamento agendamento) {
         agendamento = service.save(agendamento);
         logger.info("Efetuando insercão de Agendamento");
         return ResponseEntity.status(HttpStatus.CREATED).body(agendamento);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getByID(@PathVariable Integer id) {
+    public ResponseEntity<Agendamento> getByID(@PathVariable Integer id) {
         Agendamento agendamento = service.findById(id);
         return ResponseEntity.ok().body(agendamento);
     }
 
     @GetMapping
-    public ResponseEntity<?> getAll(Pageable page) {
+    public ResponseEntity<Page<AgendamentoDTO>> getAll(Pageable page) {
         Page<AgendamentoDTO> agendamentos = service.getAll(page);
-        System.out.println(agendamentos.getTotalElements());
         return ResponseEntity.ok().body(agendamentos);
     }
 

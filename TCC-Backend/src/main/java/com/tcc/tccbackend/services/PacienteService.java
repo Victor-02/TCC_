@@ -31,9 +31,9 @@ public class PacienteService {
         this.mapper = mapper;
     }
 
-    public Paciente save(Paciente paciente) {
+    public PacienteDTO save(PacienteDTO paciente) {
         try {
-            return repository.save(paciente);
+            return mapper.map(repository.save(mapper.map(paciente, Paciente.class)), PacienteDTO.class);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -48,8 +48,8 @@ public class PacienteService {
         }
     }
 
-    public Paciente findById(Integer id) {
-        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Paciente não encontrado: " + id));
+    public PacienteDTO findById(Integer id) {
+        return mapper.map(repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Paciente não encontrado: " + id)), PacienteDTO.class);
     }
 
     public List<Paciente> searchPacientes(String query) {
