@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/pacientes")
 @JsonFormat(pattern = "dd/MM/yyyy")
-public class PacienteController {
+public class PacienteController implements PacienteControllerDocs {
 
     final PacienteService service;
     final ModelMapper mapper;

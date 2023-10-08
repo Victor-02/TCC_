@@ -1,5 +1,6 @@
 package com.tcc.tccbackend.exceptions;
 
+import io.jsonwebtoken.security.SignatureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -40,5 +41,15 @@ public class AppExceptionHandler {
         err.setErro(HttpStatus.BAD_GATEWAY.toString());
         err.setMensagem("Horário já está ocupado!");
         return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(err);
+    }
+
+    @ExceptionHandler(SignatureException.class)
+    public ResponseEntity<ErrorMessage> signatureException(SignatureException e, HttpServletRequest requisicao) {
+        ErrorMessage err = new ErrorMessage();
+        err.setDataAtual(Instant.now());
+        err.setStatus(HttpStatus.UNAUTHORIZED.value());
+        err.setErro(HttpStatus.UNAUTHORIZED.toString());
+        err.setMensagem("Token inválido!");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(err);
     }
 }

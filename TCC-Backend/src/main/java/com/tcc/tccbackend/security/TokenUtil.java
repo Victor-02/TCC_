@@ -58,7 +58,6 @@ public class TokenUtil {
 
         if (isSubjectValid(username) && isEmissorValid(issuer) && isExpirationValid(expira))
             return new UsernamePasswordAuthenticationToken(username, null, Collections.emptyList());
-
         return null;
     }
 }
