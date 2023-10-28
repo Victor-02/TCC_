@@ -28,7 +28,10 @@ export class PacienteComponent implements OnInit {
     constructor(private service: PacienteService, private router: Router, private snackBar: MatSnackBar) {}
 
     ngOnInit() {
-        this.listarPages();
+        this.loading = true;
+        setTimeout(() => {
+            this.listarPages();
+        }, 1000);
     }
 
     listarPages() {

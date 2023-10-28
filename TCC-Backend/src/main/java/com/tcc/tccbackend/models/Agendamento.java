@@ -15,13 +15,16 @@ import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "agendamento")
 @NoArgsConstructor
 @Data
+@ToString(exclude = {"servico", "paciente", "profissional"})
 public class Agendamento implements Serializable {
 
     @Id
@@ -30,7 +33,7 @@ public class Agendamento implements Serializable {
     private Integer id;
 
     @Column
-    @NotBlank
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy'T'HH:mm")
     private Date data;
 
     @ManyToOne

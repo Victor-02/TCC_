@@ -56,7 +56,7 @@
             <tr mat-row (click)="editar(row.id)" *matRowDef="let row; columns: colunas"></tr>
         </table>
     </div>
-    <app-paginator [options]="paginator" (onGetData)="listarPages()"></app-paginator>
+    <app-paginator [options]="paginator" (onGetData)="listarPages()" *ngIf="loading == false"></app-paginator>
     <div class="acoes mt-3">
         <button mat-raised-button class="btn m-3" style="background-color: #4934cc; color: #fff" routerLink="cadastrar">
             Cadastrar

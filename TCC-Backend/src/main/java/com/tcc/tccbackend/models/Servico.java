@@ -2,6 +2,7 @@ package com.tcc.tccbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "servico")
+@ToString(exclude = {"agendamentos"})
 public class Servico implements Serializable {
 
     @Id

@@ -17,7 +17,6 @@ export class PacienteService {
 
     listarPages(page = 0, size = 10): Observable<ResponsePageable> {
         let pageable = new HttpParams();
-
         pageable = pageable.append('page', page);
         pageable = pageable.append('size', size);
         return this.httpClient

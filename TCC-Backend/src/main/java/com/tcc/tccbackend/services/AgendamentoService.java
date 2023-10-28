@@ -2,9 +2,11 @@ package com.tcc.tccbackend.services;
 
 
 import com.tcc.tccbackend.dtos.AgendamentoDTO;
+import com.tcc.tccbackend.dtos.PacienteDTO;
 import com.tcc.tccbackend.exceptions.AgendamentoException;
 import com.tcc.tccbackend.exceptions.HorarioIgualException;
 import com.tcc.tccbackend.models.Agendamento;
+import com.tcc.tccbackend.models.Paciente;
 import com.tcc.tccbackend.repository.AgendamentoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -44,8 +46,8 @@ public class AgendamentoService {
         }
     }
 
-    public Agendamento findById(Integer id) {
-        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Agendamento não encontrado: " + id));
+    public AgendamentoDTO findById(Integer id) {
+        return mapper.map(repository.findById(id), AgendamentoDTO.class);
     }
 
     public void deleteById(Integer id) {
@@ -63,10 +65,6 @@ public class AgendamentoService {
         int endIndex = Math.min(startIndex + pageSize, list.size());
         List<AgendamentoDTO> content = list.stream().skip(startIndex).limit(endIndex - startIndex).collect(Collectors.toList());
         return new PageImpl<>(content, pageable, list.size());
-    }
-
-    private Agendamento convertToAgendamento(AgendamentoDTO dto) {
-        return mapper.map(dto, Agendamento.class);
     }
 
     public Page<AgendamentoDTO> getAll(Pageable page) throws AgendamentoException {

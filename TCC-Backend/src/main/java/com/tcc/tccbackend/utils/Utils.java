@@ -1,5 +1,6 @@
 package com.tcc.tccbackend.utils;
 
+import com.tcc.tccbackend.dtos.AgendamentoDTO;
 import com.tcc.tccbackend.models.Agendamento;
 
 import java.text.ParseException;

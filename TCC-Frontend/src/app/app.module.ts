@@ -1,9 +1,8 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CookieService } from 'ngx-cookie-service';
-import { NgxMaskModule } from 'ngx-mask';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +18,8 @@ import { ServicoDialogComponent } from './view/servico/servico-dialog/servico-di
 import { ServicoComponent } from './view/servico/servico.component';
 import { BreadCrumbComponent } from './shared/breadCrumb/bread-crumb/bread-crumb.component';
 import { ProfileComponent } from './shared/profile/profile.component';
+import { AuthService } from './auth/auth.service';
+import { AuthInterceptor } from './auth/interceptor';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,15 @@ import { ProfileComponent } from './shared/profile/profile.component';
         ProfileComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatImportsModule, HttpClientModule],
-    providers: [CookieService],
+    providers: [
+        CookieService,
+        AuthService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

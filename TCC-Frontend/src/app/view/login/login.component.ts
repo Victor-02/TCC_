@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoginService } from 'app/service/login.service';
+import { AuthService } from 'app/auth/auth.service';
 
 @Component({
     selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
         private fbuilder: FormBuilder,
         private snackBar: MatSnackBar,
         private router: Router,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private authService: AuthService
     ) {
         this.loginForm = this.fbuilder.group({
             email: ['', [Validators.email]],
@@ -29,8 +31,9 @@ export class LoginComponent implements OnInit {
     actionLogin() {
         this.loginService.login(this.loginForm.value).subscribe({
             next: (v) => {
-                sessionStorage.setItem('auth', v.token);
+                this.authService.setAuthToken(v.token);
                 sessionStorage.setItem('id', v.id);
+                sessionStorage.setItem('auth', v.token);
                 this.router.navigate(['/pacientes']);
             },
             error: () => {
