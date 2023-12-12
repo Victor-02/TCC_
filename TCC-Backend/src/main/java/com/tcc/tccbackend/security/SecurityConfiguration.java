@@ -26,6 +26,7 @@ class SecurityConfiguration {
                         "/v2/api-docs",
                         "/v3/api-docs",
                         "/api/user/login",
+                        "/api/user/create",
                         "/swagger-ui/**")
                 .permitAll()
                 .anyRequest().authenticated().and().cors();

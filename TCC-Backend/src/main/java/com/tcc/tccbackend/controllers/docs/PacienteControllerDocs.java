@@ -1,4 +1,4 @@
-package com.tcc.tccbackend.controllers;
+package com.tcc.tccbackend.controllers.docs;
 
 import com.tcc.tccbackend.dtos.PacienteDTO;
 import com.tcc.tccbackend.models.Paciente;

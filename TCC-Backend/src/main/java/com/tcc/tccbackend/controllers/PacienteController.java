@@ -1,6 +1,7 @@
 package com.tcc.tccbackend.controllers;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.tcc.tccbackend.controllers.docs.PacienteControllerDocs;
 import com.tcc.tccbackend.dtos.PacienteDTO;
 import com.tcc.tccbackend.models.Paciente;
 import com.tcc.tccbackend.services.PacienteService;

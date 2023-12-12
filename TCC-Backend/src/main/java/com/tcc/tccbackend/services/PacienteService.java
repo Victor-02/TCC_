@@ -89,11 +89,13 @@ public class PacienteService {
         }
     }
 
-    public void deleteById(Integer id) {
+    public String deleteById(Integer id) {
         try {
             repository.deleteById(id);
+            return "deletado com sucesso";
         } catch (Exception e) {
             e.printStackTrace();
+            return "erro ao deletar";
         }
     }
 
