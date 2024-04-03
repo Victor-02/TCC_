@@ -48,7 +48,6 @@ public class TokenUtil {
     public static Authentication validate(HttpServletRequest request) {
         String token = request.getHeader(HEADER);
         token = token.replace(PREFIX, "");
-        System.out.println(token);
         Jws<Claims> jwsClaims = Jwts.parserBuilder().setSigningKey(SECRET_KEY.getBytes())
                 .build().parseClaimsJws(token);
 
@@ -58,7 +57,6 @@ public class TokenUtil {
 
         if (isSubjectValid(username) && isEmissorValid(issuer) && isExpirationValid(expira))
             return new UsernamePasswordAuthenticationToken(username, null, Collections.emptyList());
-
         return null;
     }
 }

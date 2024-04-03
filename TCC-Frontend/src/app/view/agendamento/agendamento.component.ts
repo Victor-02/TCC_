@@ -39,7 +39,6 @@ export class AgendamentoComponent implements OnInit {
                 this.paginator.total = data.totalElements;
                 this.paginator.page = data.number;
                 this.paginator.size = data.size;
-                console.log(this.paginator.records);
             },
             error: () => {
                 this.onError(), (this.loading = false);

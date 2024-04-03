@@ -5,11 +5,6 @@ import { Observable } from 'rxjs';
 
 import { User } from 'app/model/user';
 
-const httpHeaders: HttpHeaders = new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'Bearer ' + sessionStorage.getItem('auth'),
-});
-
 @Injectable({
     providedIn: 'root',
 })
@@ -18,10 +13,8 @@ export class UserService {
 
     getUser(id: number): Observable<User> {
         try {
-            console.log(httpHeaders);
-
             return this.httpClient.get<User>(`${config.apiUrl}/user/${id}`, {
-                headers: httpHeaders,
+                headers: config.httpHeaders,
             });
         } catch (error) {
             throw new Error('Erro ao encontrar usuário');

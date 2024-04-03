@@ -45,10 +45,7 @@ public class ConverterToData {
                     case 1 -> paciente.setEmail(cell.getStringCellValue());
                     case 2 -> paciente.setCpf(cell.getStringCellValue());
                     case 3 -> paciente.setTelefone(cell.getStringCellValue());
-                    case 4 -> {
-                        /*paciente.setDataNascimento(Utils.toDate(cell.getDateCellValue()));*/
-                        paciente.setDataNascimento(cell.getDateCellValue());
-                    }
+                    case 4 -> paciente.setDataNascimento(cell.getDateCellValue());
                 }
             }
         }
@@ -64,4 +61,5 @@ public class ConverterToData {
         }
         return true;
     }
+
 }

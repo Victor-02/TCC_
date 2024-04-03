@@ -7,6 +7,7 @@ import { Paginator } from 'app/shared/paginator/paginator.class';
 
 import { Paciente } from '../../../model/paciente';
 import { PacienteService } from '../../../service/paciente.service';
+import { delay } from 'rxjs';
 
 @Component({
     selector: 'app-paciente',
@@ -27,7 +28,10 @@ export class PacienteComponent implements OnInit {
     constructor(private service: PacienteService, private router: Router, private snackBar: MatSnackBar) {}
 
     ngOnInit() {
-        this.listarPages();
+        this.loading = true;
+        setTimeout(() => {
+            this.listarPages();
+        }, 1000);
     }
 
     listarPages() {

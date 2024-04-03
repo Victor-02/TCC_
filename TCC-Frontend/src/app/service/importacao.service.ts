@@ -12,7 +12,6 @@ export class ImportacaoService {
     constructor(private http: HttpClient) {}
 
     listarPages(page = 0, size = 10): Observable<ResponsePageable> {
-        const httpHeader = new HttpHeaders();
         let pageable = new HttpParams();
         pageable = pageable.append('page', page);
         pageable = pageable.append('size', size);
@@ -24,10 +23,13 @@ export class ImportacaoService {
 
     uploadArquivo(arquivo: File): Observable<any> {
         const data = new FormData();
+        const httpHeaders = new HttpHeaders({
+            Authorization: 'Bearer ' + sessionStorage.getItem('auth'),
+        });
         data.append('file', arquivo);
         return this.http.post(`${config.apiUrl}/${this.endPoint}/upload`, data, {
             responseType: 'text',
-            headers: config.httpHeaders,
+            headers: httpHeaders,
         });
     }
 }

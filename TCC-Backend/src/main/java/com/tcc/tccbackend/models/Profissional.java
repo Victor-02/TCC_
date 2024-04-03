@@ -5,12 +5,14 @@ import lombok.Data;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.ToString;
 
 import java.util.List;
 
 @Data
 @Entity
 @Table(name = "profissionais")
+@ToString(exclude = {"agendamentos"})
 public class Profissional {
 
     @Id

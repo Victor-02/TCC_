@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
-
 import com.tcc.tccbackend.utils.Utils;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -19,6 +17,8 @@ import com.tcc.tccbackend.dtos.PacienteDTO;
 import com.tcc.tccbackend.models.Paciente;
 import com.tcc.tccbackend.repository.PacienteRepository;
 import com.tcc.tccbackend.utils.ConverterToData;
+
+import javax.persistence.EntityNotFoundException;
 
 @Service
 public class PacienteService {
@@ -89,11 +89,13 @@ public class PacienteService {
         }
     }
 
-    public void deleteById(Integer id) {
+    public String deleteById(Integer id) {
         try {
             repository.deleteById(id);
+            return "deletado com sucesso";
         } catch (Exception e) {
             e.printStackTrace();
+            return "erro ao deletar";
         }
     }
 

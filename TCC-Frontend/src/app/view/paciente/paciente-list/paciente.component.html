@@ -23,9 +23,11 @@
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
-    <div *ngIf="!loading && !paginator.records">Nenhum registro carregado!</div>
+    <div *ngIf="!loading && paginator.total == 0">
+        <h4 class="justify-content-center" style="margin: 50px">Nenhum registro carregado!</h4>
+    </div>
 
-    <div class="table-container mb-3" [hidden]="loading || !paginator.records">
+    <div class="table-container mb-3" [hidden]="loading || paginator.total == 0">
         <table mat-table [dataSource]="paginator.records">
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -56,7 +58,10 @@
             <tr mat-row (click)="editar(row.id)" *matRowDef="let row; columns: colunas"></tr>
         </table>
     </div>
-    <app-paginator [options]="paginator" (onGetData)="listarPages()"></app-paginator>
+    <app-paginator
+        [options]="paginator"
+        (onGetData)="listarPages()"
+        *ngIf="loading == false && paginator.total != 0"></app-paginator>
     <div class="acoes mt-3">
         <button mat-raised-button class="btn m-3" style="background-color: #4934cc; color: #fff" routerLink="cadastrar">
             Cadastrar
